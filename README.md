@@ -1,4 +1,4 @@
-# 🌐 B2B Export Site Builder & Master CMS Engine (2026 Edition)
+# 🌐 WIDEWAY Export Site Builder & Master CMS Engine (2026 Edition)
 
 > **Enterprise-Grade B2B Standalone Export Website & Master CMS Automation Framework**  
 > Transform any manufacturing enterprise into a high-converting, AI-indexed B2B export powerhouse with 20+ responsive pages, Shopify-style product master catalog, 50MB 4K video showcase, visual in-place editing, and 1-click deployment.
@@ -14,8 +14,8 @@
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/cnproduct/b2b-export-site-builder-skill.git
-cd b2b-export-site-builder-skill
+git clone https://github.com/cnproduct/wideway-export-site-builder-skill.git
+cd wideway-export-site-builder-skill
 ```
 
 ### Step 2: Generate a Brand New Website

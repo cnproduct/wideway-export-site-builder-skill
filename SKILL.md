@@ -1,9 +1,9 @@
 ---
-name: B2B Export Site Builder & CMS Master
+name: wideway-export-site-builder-skill
 description: 全生命周期工业出海 B2B 独立站与 Master CMS 管理后台自动化构建技能。支持 20+ 出海落地页极速生成、Shopify 双列商品主控器、50MB 4K/1080P 产品视频展厅、多视角图库、直观可视化在位编辑、AI-Ready 深度 SEO/GEO 矩阵生成与一键 SSH 部署。
 ---
 
-# 🚀 B2B Export Site Builder & Master CMS Skill
+# 🚀 WIDEWAY Export Site Builder & Master CMS Skill
 
 本技能是一套出版级、高度数据驱动的 **B2B 工业出海独立站与 Master CMS 全栈建站引擎**。旨在让外贸制造企业（鞋业、服装、箱包、石材、汽配、电子、五金、医疗耗材等）在数秒内构建拥有全球顶级工业美学、完整制造实力证明、Shopify 级产品编辑中台及 AI 搜索引擎优先索引（GEO/SEO）的官方出海门户。
 
@@ -41,7 +41,7 @@ description: 全生命周期工业出海 B2B 独立站与 Master CMS 管理后�
 ## 📂 技能目录与资源结构
 
 ```text
-b2b-export-site-builder/
+wideway-export-site-builder-skill/
 ├── SKILL.md                          # 本说明文档
 ├── README.md                         # 项目主页与快速入门
 ├── scaffold_new_site.py              # 🚀 核心自动化脚手架脚本
