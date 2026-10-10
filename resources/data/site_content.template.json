@@ -1,0 +1,373 @@
+{
+  "company_info": {
+    "name_en": "Jinjiang Wideway Import & Export Co., Ltd.",
+    "name_zh": "晋江市万维进出口有限公司",
+    "logo_text": "WIDEWAY GROUP",
+    "brand_name": "WIDEWAY",
+    "phone": "+86 185 0595 9266",
+    "mobile": "+86 185 0595 9266",
+    "whatsapp": "+86 185 0595 9266",
+    "wechat": "+86 185 0595 9266",
+    "email": "amy@widewaygroup.com",
+    "email_secondary": "kelly@widewaygroup.com",
+    "address": "8F, Building 8A, NO.618, JINXIN Road, ChenDai town, Jinjiang, QuanZhou City, Fujian, China",
+    "registered_address": "M1-906 SHIMAOYULONGWAN, SHUANGLONG ROAD, JINJIANG CITY, FUJIAN PROVINCE, CHINA",
+    "port": "Xiamen Port / Quanzhou Port",
+    "primary_keyword": "Sneakers Manufacturer Jinjiang",
+    "secondary_keywords": [
+      "China sports shoes factory",
+      "OEM sneaker manufacturer",
+      "casual shoes wholesale supplier",
+      "Jinjiang shoes industry center",
+      "slides and sandals manufacturer",
+      "private label footwear factory",
+      "low MOQ custom sneakers",
+      "archival silhouette re-engineering",
+      "1:1 heritage footwear craftsmanship",
+      "vintage sneaker tooling reproduction",
+      "retro court shoes OEM ODM"
+    ],
+    "meta_description": "Jinjiang Wideway (WIDEWAY GROUP) is a leading footwear manufacturer based in Jinjiang, Fujian since 2007. Specializing in athletic sneakers, casual footwear, 1:1 archival silhouette re-engineering, and private label OEM/ODM for global brands.",
+    "geo_region": "CN-FJ",
+    "geo_placename": "Jinjiang, Quanzhou, Fujian, China",
+    "geo_position": "24.7865;118.5833",
+    "icbm": "24.7865, 118.5833",
+    "founding_year": "2007",
+    "slogan": "Professionalism Creates Value",
+    "slogan_sub": "A Masterpiece of Craftsmanship, Presenting Superior Quality",
+    "sales_team": [
+      {
+        "name": "WIDEWAY Export Desk",
+        "role": "Direct Factory Sales & Engineering Lead",
+        "phone": "+86 185 0595 9266",
+        "whatsapp": "+86 185 0595 9266",
+        "whatsapp_raw": "+8618505959266",
+        "whatsapp_clean": "8618505959266",
+        "status": "Online (Avg reply < 5m)",
+        "avatar_initials": "WW",
+        "specialty": "OEM/ODM Tooling, Low MOQ, Tech Packs & Rapid Quotations"
+      }
+    ]
+  },
+  "categories": {
+    "sport-outdoor-shoes": {
+      "title": "Sport & Outdoor Shoes Wholesale Manufacturer | WIDEWAY Jinjiang",
+      "desc": "Source professional athletic footwear, trail running shoes, and outdoor sneakers directly from Jinjiang Wideway factory. High-elastic cushioning, breathable mesh, and low MOQ OEM/ODM.",
+      "h1": "Sport & Outdoor Shoes Manufacturing",
+      "url": "sport-outdoor-shoes-wholesale.html",
+      "spec_headers": [
+        "Model Code",
+        "Upper Material",
+        "Outsole / Midsole",
+        "Lining / Insole",
+        "Size Range",
+        "MOQ (Pairs)",
+        "Lead Time",
+        "Customization"
+      ],
+      "spec_keys": [
+        "name",
+        "upper",
+        "outsole",
+        "lining",
+        "sizes",
+        "moq",
+        "lead_time",
+        "customization"
+      ]
+    },
+    "casual-shoes": {
+      "title": "OEM Casual Shoes Factory & Sourcing | WIDEWAY GROUP",
+      "desc": "Custom private label casual shoes and lifestyle sneakers crafted with premium microfibers, lightweight EVA outsoles, and ergonomic fits for international fashion brands.",
+      "h1": "Custom OEM Casual Shoes Wholesale",
+      "url": "casual-shoes-oem-manufacturer.html",
+      "spec_headers": [
+        "Model Code",
+        "Upper Material",
+        "Outsole / Midsole",
+        "Lining / Insole",
+        "Size Range",
+        "MOQ (Pairs)",
+        "Lead Time",
+        "Customization"
+      ],
+      "spec_keys": [
+        "name",
+        "upper",
+        "outsole",
+        "lining",
+        "sizes",
+        "moq",
+        "lead_time",
+        "customization"
+      ]
+    },
+    "mens-shoes": {
+      "title": "Men's Sneakers & Streetwear Footwear Wholesale | WIDEWAY",
+      "desc": "Wholesale men's athletic sneakers, chunky runners, and modern streetwear shoes manufactured with strict quality control. Trusted by global retail chains and boutique labels.",
+      "h1": "Men's Athletic & Casual Footwear Bulk Supplier",
+      "url": "mens-sneakers-bulk-supplier.html",
+      "spec_headers": [
+        "Model Code",
+        "Upper Material",
+        "Outsole / Midsole",
+        "Lining / Insole",
+        "Size Range",
+        "MOQ (Pairs)",
+        "Lead Time",
+        "Customization"
+      ],
+      "spec_keys": [
+        "name",
+        "upper",
+        "outsole",
+        "lining",
+        "sizes",
+        "moq",
+        "lead_time",
+        "customization"
+      ]
+    },
+    "womens-shoes": {
+      "title": "Women's Fashion Sneakers & Lightweight Shoes Factory | WIDEWAY",
+      "desc": "Ergonomically designed women's walking shoes, tennis trainers, and fashion sneakers. Breathable flying woven uppers, ultra-light sole cushioning, and trendy colorways.",
+      "h1": "Women's Lightweight Trainers & Fashion Sneakers",
+      "url": "womens-sneakers-oem-factory.html",
+      "spec_headers": [
+        "Model Code",
+        "Upper Material",
+        "Outsole / Midsole",
+        "Lining / Insole",
+        "Size Range",
+        "MOQ (Pairs)",
+        "Lead Time",
+        "Customization"
+      ],
+      "spec_keys": [
+        "name",
+        "upper",
+        "outsole",
+        "lining",
+        "sizes",
+        "moq",
+        "lead_time",
+        "customization"
+      ]
+    },
+    "slides-sandals": {
+      "title": "Custom Slides, Sandals & Slippers Factory | WIDEWAY GROUP",
+      "desc": "One-piece molded EVA slides, beach sandals, and recovery slippers. Non-slip outsoles, quick-drying comfort, and custom embossed logo branding.",
+      "h1": "Comfort Slides, Sandals & Recovery Slippers",
+      "url": "slides-sandals-slippers-manufacturer.html",
+      "spec_headers": [
+        "Model Code",
+        "Upper Material",
+        "Outsole / Midsole",
+        "Lining / Insole",
+        "Size Range",
+        "MOQ (Pairs)",
+        "Lead Time",
+        "Customization"
+      ],
+      "spec_keys": [
+        "name",
+        "upper",
+        "outsole",
+        "lining",
+        "sizes",
+        "moq",
+        "lead_time",
+        "customization"
+      ]
+    },
+    "bags-sportswear": {
+      "title": "Sportswear Backpacks & Athletic Bags Wholesale | WIDEWAY",
+      "desc": "Durable water-resistant sports backpacks, gym duffels, and lifestyle accessories designed to complete your athletic brand lineup.",
+      "h1": "Athletic Backpacks & Sportswear Accessories",
+      "url": "bags-sportswear-accessories-wholesale.html",
+      "spec_headers": [
+        "Model Code",
+        "Upper Material",
+        "Outsole / Midsole",
+        "Lining / Insole",
+        "Size Range",
+        "MOQ (Pairs)",
+        "Lead Time",
+        "Customization"
+      ],
+      "spec_keys": [
+        "name",
+        "upper",
+        "outsole",
+        "lining",
+        "sizes",
+        "moq",
+        "lead_time",
+        "customization"
+      ]
+    }
+  },
+  "products": [
+    {
+      "name": "SPORT WD2600147",
+      "code": "SPORT WD2600147",
+      "category": "sport-outdoor-shoes",
+      "image": "images/banner.jpg",
+      "upper": "Lightweight Breathable Flyknit Upper",
+      "outsole": "MD Midsole + High-Traction Rubber Outsole",
+      "lining": "Breathable Mesh + Cushioned OrthoLite Insole",
+      "sizes": "EU 36-45",
+      "moq": "500 Pairs / Color",
+      "lead_time": "30-45 Days (Samples 7-10 Days)",
+      "customization": "Custom Last, OEM Brand",
+      "id": "sport-wd2600147",
+      "gallery": [
+        "images/banner.jpg"
+      ],
+      "video": "",
+      "tag": "OEM/ODM",
+      "description": "Engineered by WIDEWAY footwear lab, the SPORT WD2600147 combines ergonomic arch support, high-elastic cushioning outsoles, and durable wear-resistant materials. Designed for high-volume OEM/ODM export orders with customized branding, colorways, and full size runs.",
+      "seo_title": "SPORT WD2600147 OEM/ODM Custom Sneakers & Trainers | WIDEWAY Footwear Manufacturer",
+      "seo_description": "Wholesale B2B manufacturing for SPORT WD2600147. SATRA physical lab tested, low MOQ, factory direct from Jinjiang footwear cluster.",
+      "geo_markets": "North America, European Union, United Kingdom, Middle East, Australia, Southeast Asia",
+      "geo_origin": "Jinjiang Footwear Industrial Cluster, Fujian, China (SATRA & BSCI Certified Facility)"
+    },
+    {
+      "id": "women-s-wd2500222",
+      "name": "WOMEN'S WD2500222",
+      "category": "womens-shoes",
+      "image": "images/products/women-s-wd2500222_1.jpg",
+      "gallery": [
+        "images/products/women-s-wd2500222_1.jpg",
+        "images/products/women-s-wd2500222_2.jpg"
+      ],
+      "tag": "Wideway Sports Shoes",
+      "keywords": "Wideway Sports Shoes, Breathable, Anti-slip",
+      "description": "Engineered by WIDEWAY footwear lab, the WOMEN'S WD2500222 combines ergonomic arch support, high-elastic cushioning outsoles, and durable wear-resistant materials. Designed for high-volume OEM/ODM export orders with customized branding, colorways, and full size runs.",
+      "upper": "Lightweight Breathable Flyknit Upper",
+      "outsole": "MD Midsole + High-Traction Rubber Outsole",
+      "lining": "Breathable Mesh + Cushioned OrthoLite Insole",
+      "sizes": "EU 36-45 / US 5-11",
+      "moq": "500 Pairs / Color",
+      "lead_time": "30-45 Days (Samples 7-10 Days)",
+      "customization": "Custom Logo, Colors, Upper Materials & Packaging",
+      "video": "",
+      "seo_title": "WOMEN'S WD2500222 OEM/ODM Custom Sneakers & Trainers | WIDEWAY Footwear Manufacturer",
+      "seo_description": "Wholesale B2B manufacturing for WOMEN'S WD2500222. SATRA physical lab tested, low MOQ, factory direct from Jinjiang footwear cluster.",
+      "geo_markets": "North America, European Union, United Kingdom, Middle East, Australia, Southeast Asia",
+      "geo_origin": "Jinjiang Footwear Industrial Cluster, Fujian, China (SATRA & BSCI Certified Facility)"
+    },
+    {
+      "id": "women-s-wd2500700",
+      "name": "WOMEN'S WD2500700",
+      "category": "womens-shoes",
+      "image": "images/products/women-s-wd2500700_1.jpg",
+      "gallery": [
+        "images/products/women-s-wd2500700_1.jpg",
+        "images/products/women-s-wd2500700_2.jpg",
+        "images/products/women-s-wd2500700_3.jpg",
+        "images/products/women-s-wd2500700_4.jpg",
+        "images/products/women-s-wd2500700_5.jpg"
+      ],
+      "tag": "Anti-slip",
+      "keywords": "Anti-slip, Breathable, Wideway Sports Shoes",
+      "description": "Engineered by WIDEWAY footwear lab, the WOMEN'S WD2500700 combines ergonomic arch support, high-elastic cushioning outsoles, and durable wear-resistant materials. Designed for high-volume OEM/ODM export orders with customized branding, colorways, and full size runs.",
+      "upper": "Lightweight Breathable Flyknit Upper",
+      "outsole": "MD Midsole + High-Traction Rubber Outsole",
+      "lining": "Breathable Mesh + Cushioned OrthoLite Insole",
+      "sizes": "EU 36-45 / US 5-11",
+      "moq": "500 Pairs / Color",
+      "lead_time": "30-45 Days (Samples 7-10 Days)",
+      "customization": "Custom Logo, Colors, Upper Materials & Packaging",
+      "video": "",
+      "seo_title": "WOMEN'S WD2500700 OEM/ODM Custom Sneakers & Trainers | WIDEWAY Footwear Manufacturer",
+      "seo_description": "Wholesale B2B manufacturing for WOMEN'S WD2500700. SATRA physical lab tested, low MOQ, factory direct from Jinjiang footwear cluster.",
+      "geo_markets": "North America, European Union, United Kingdom, Middle East, Australia, Southeast Asia",
+      "geo_origin": "Jinjiang Footwear Industrial Cluster, Fujian, China (SATRA & BSCI Certified Facility)"
+    },
+    {
+      "id": "women-s-wd2500701",
+      "name": "WOMEN'S WD2500701",
+      "category": "womens-shoes",
+      "image": "images/products/women-s-wd2500701_1.jpg",
+      "gallery": [
+        "images/products/women-s-wd2500701_1.jpg",
+        "images/products/women-s-wd2500701_2.jpg",
+        "images/products/women-s-wd2500701_3.jpg"
+      ],
+      "tag": "Anti-slip",
+      "keywords": "Anti-slip, Breathable, Wideway Sports Shoes",
+      "description": "Engineered by WIDEWAY footwear lab, the WOMEN'S WD2500701 combines ergonomic arch support, high-elastic cushioning outsoles, and durable wear-resistant materials. Designed for high-volume OEM/ODM export orders with customized branding, colorways, and full size runs.",
+      "upper": "Lightweight Breathable Flyknit Upper",
+      "outsole": "MD Midsole + High-Traction Rubber Outsole",
+      "lining": "Breathable Mesh + Cushioned OrthoLite Insole",
+      "sizes": "EU 36-45 / US 5-11",
+      "moq": "500 Pairs / Color",
+      "lead_time": "30-45 Days (Samples 7-10 Days)",
+      "customization": "Custom Logo, Colors, Upper Materials & Packaging",
+      "video": "",
+      "seo_title": "WOMEN'S WD2500701 OEM/ODM Custom Sneakers & Trainers | WIDEWAY Footwear Manufacturer",
+      "seo_description": "Wholesale B2B manufacturing for WOMEN'S WD2500701. SATRA physical lab tested, low MOQ, factory direct from Jinjiang footwear cluster.",
+      "geo_markets": "North America, European Union, United Kingdom, Middle East, Australia, Southeast Asia",
+      "geo_origin": "Jinjiang Footwear Industrial Cluster, Fujian, China (SATRA & BSCI Certified Facility)"
+    },
+    {
+      "id": "women-s-wd2501208",
+      "name": "WOMEN'S WD2501208",
+      "category": "womens-shoes",
+      "image": "images/products/women-s-wd2501208_1.jpg",
+      "gallery": [
+        "images/products/women-s-wd2501208_1.jpg",
+        "images/products/women-s-wd2501208_2.jpg",
+        "images/products/women-s-wd2501208_3.jpg",
+        "images/products/women-s-wd2501208_4.jpg",
+        "images/products/women-s-wd2501208_5.jpg"
+      ],
+      "tag": "Anti-slip",
+      "keywords": "Anti-slip, Breathable, Wideway Sports Shoes",
+      "description": "Engineered by WIDEWAY footwear lab, the WOMEN'S WD2501208 combines ergonomic arch support, high-elastic cushioning outsoles, and durable wear-resistant materials. Designed for high-volume OEM/ODM export orders with customized branding, colorways, and full size runs.",
+      "upper": "Lightweight Breathable Flyknit Upper",
+      "outsole": "MD Midsole + High-Traction Rubber Outsole",
+      "lining": "Breathable Mesh + Cushioned OrthoLite Insole",
+      "sizes": "EU 36-45 / US 5-11",
+      "moq": "500 Pairs / Color",
+      "lead_time": "30-45 Days (Samples 7-10 Days)",
+      "customization": "Custom Logo, Colors, Upper Materials & Packaging",
+      "video": "",
+      "seo_title": "WOMEN'S WD2501208 OEM/ODM Custom Sneakers & Trainers | WIDEWAY Footwear Manufacturer",
+      "seo_description": "Wholesale B2B manufacturing for WOMEN'S WD2501208. SATRA physical lab tested, low MOQ, factory direct from Jinjiang footwear cluster.",
+      "geo_markets": "North America, European Union, United Kingdom, Middle East, Australia, Southeast Asia",
+      "geo_origin": "Jinjiang Footwear Industrial Cluster, Fujian, China (SATRA & BSCI Certified Facility)"
+    },
+    {
+      "id": "women-s-wd2501274",
+      "name": "WOMEN'S WD2501274",
+      "category": "womens-shoes",
+      "image": "images/products/women-s-wd2501274_1.jpg",
+      "gallery": [
+        "images/products/women-s-wd2501274_1.jpg",
+        "images/products/women-s-wd2501274_2.jpg",
+        "images/products/women-s-wd2501274_3.jpg"
+      ],
+      "tag": "Anti-slip",
+      "keywords": "Anti-slip, Breathable, Wideway Sports Shoes",
+      "description": "Engineered by WIDEWAY footwear lab, the WOMEN'S WD2501274 combines ergonomic arch support, high-elastic cushioning outsoles, and durable wear-resistant materials. Designed for high-volume OEM/ODM export orders with customized branding, colorways, and full size runs.",
+      "upper": "Lightweight Breathable Flyknit Upper",
+      "outsole": "MD Midsole + High-Traction Rubber Outsole",
+      "lining": "Breathable Mesh + Cushioned OrthoLite Insole",
+      "sizes": "EU 36-45 / US 5-11",
+      "moq": "500 Pairs / Color",
+      "lead_time": "30-45 Days (Samples 7-10 Days)",
+      "customization": "Custom Logo, Colors, Upper Materials & Packaging",
+      "video": "",
+      "seo_title": "WOMEN'S WD2501274 OEM/ODM Custom Sneakers & Trainers | WIDEWAY Footwear Manufacturer",
+      "seo_description": "Wholesale B2B manufacturing for WOMEN'S WD2501274. SATRA physical lab tested, low MOQ, factory direct from Jinjiang footwear cluster.",
+      "geo_markets": "North America, European Union, United Kingdom, Middle East, Australia, Southeast Asia",
+      "geo_origin": "Jinjiang Footwear Industrial Cluster, Fujian, China (SATRA & BSCI Certified Facility)"
+    }
+  ],
+  "articles": [],
+  "certifications": [],
+  "factory_stats": {},
+  "faq_items": []
+}
