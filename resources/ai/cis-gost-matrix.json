@@ -1,0 +1,169 @@
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "name": "WIDEWAY Footwear ГОСТ ↔ ISO ↔ SATRA Technical Compliance & EAEU TR CU 017/2011 Specification",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jinjiang Wideway Import & Export Co., Ltd.",
+    "alternateName": "WIDEWAY GROUP",
+    "url": "https://widewayfootwear.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jinjiang",
+      "addressRegion": "Fujian",
+      "addressCountry": "CN"
+    }
+  },
+  "targetRegions": [
+    "RU",
+    "KZ",
+    "UZ",
+    "BY",
+    "KG",
+    "TJ"
+  ],
+  "customsClassifications": {
+    "athletic_sneakers_synthetic": "6402 19 000 0",
+    "casual_sneakers_synthetic_poly": "6402 99 980 0",
+    "leather_upper_sneakers": "6403 99 930 0",
+    "textile_court_shoes": "6404 11 000 0"
+  },
+  "mandatoryCertifications": [
+    "ТР ТС 017/2011 (Декларация о соответствии ЕАС)",
+    "Честный ЗНАК (GS1 DataMatrix 2D Barcode Aggregation)",
+    "Сертификат происхождения СТ-1 / Form A"
+  ],
+  "logisticsMetrics": {
+    "40HQ_container_boxed_pairs": "6200 - 6600 pairs (520 - 550 master cartons)",
+    "40HQ_container_polybag_pairs": "11000 - 13000 pairs",
+    "rail_transit_dostyk_almaty_days": "12 - 16 days",
+    "rail_transit_moscow_vorsino_days": "16 - 22 days",
+    "sea_rail_vladivostok_days": "14 - 18 days",
+    "acceptedCurrencies": [
+      "CNY",
+      "RUB",
+      "USD",
+      "EUR"
+    ]
+  },
+  "technicalParameters": [
+    {
+      "parameter_ru": "Прочность крепления подошвы (клеевой шов)",
+      "parameter_en": "Sole Attachment / Bond Strength",
+      "gost_standard": "ГОСТ 9134-78 / ГОСТ 9136-78 / ТР ТС 017/2011",
+      "intl_standard": "SATRA TM411 / ISO 17708",
+      "gost_norm": "≥ 3.0 Н/мм (для спортивной и повседневной обуви)",
+      "wideway_value": "≥ 3.8 – 4.5 Н/мм",
+      "advantage_ru": "Двойная инфракрасная термоактивация клеевой пленки и гидравлический обжим под давлением 6.0 кг/см² исключают отрыв подошвы в слякоти и снегу."
+    },
+    {
+      "parameter_ru": "Сопротивление подошвы многократному изгибу при -25°C",
+      "parameter_en": "Outsole Repeated Cold Flex Resistance",
+      "gost_standard": "ГОСТ Р ИСО 17707-2014 / ГОСТ 9718-88",
+      "intl_standard": "SATRA TM161 / ISO 20344 (п. 8.4)",
+      "gost_norm": "Разрастание надреза ≤ 4.0 мм после 30 000 циклов",
+      "wideway_value": "≤ 1.5 мм после 50 000 циклов при +23°C; 30 000 циклов при -25°C",
+      "advantage_ru": "Специальная морозостойкая резина и модифицированный ТПУ не трескаются при экстремальных температурах РФ и Казахстана (до -35°C)."
+    },
+    {
+      "parameter_ru": "Прочность верха на разрыв и раздирание",
+      "parameter_en": "Upper Material Tear & Tensile Strength",
+      "gost_standard": "ГОСТ 938.11-69 / ГОСТ 9290-76",
+      "intl_standard": "ISO 3376 / ISO 3377-2 / SATRA TM30",
+      "gost_norm": "≥ 60 Н (текстиль / микрофибра / синтетическая кожа)",
+      "wideway_value": "≥ 120 – 180 Н",
+      "advantage_ru": "Усиленный жаккардовый Flyknit высокой плотности и многослойная микрофибра 1.4-1.6 мм выдерживают жесткие динамические нагрузки."
+    },
+    {
+      "parameter_ru": "Истираемость резины протектора",
+      "parameter_en": "Outsole Abrasion Resistance",
+      "gost_standard": "ГОСТ 426-77 / ГОСТ 12.4.137",
+      "intl_standard": "DIN 53516 / ISO 4649 (Method A)",
+      "gost_norm": "Потеря объема ≤ 180 – 250 мм³",
+      "wideway_value": "≤ 85 – 110 мм³ (Carbon Rubber Pods)",
+      "advantage_ru": "Высокая долговечность протектора на абразивном асфальте, бетоне, гравии и посыпанном солью тротуаре."
+    },
+    {
+      "parameter_ru": "Морозостойкость низа обуви и температура стеклования",
+      "parameter_en": "Cold Temperature Flexibility / Glass Transition",
+      "gost_standard": "ГОСТ 26167-2005 / ГОСТ 12.4.137",
+      "intl_standard": "SATRA TM161 (Cold Chamber)",
+      "gost_norm": "Отсутствие хрупкости и трещин при -15°C",
+      "wideway_value": "Сохранение упругости и сцепления до -35°C",
+      "advantage_ru": "Подошва не дубеет и не превращается в скользкий твердый пластик на льду и укатанном снегу."
+    },
+    {
+      "parameter_ru": "Динамическая водонепроницаемость мембранной обуви",
+      "parameter_en": "Dynamic Water Resistance (Bootie Flex Test)",
+      "gost_standard": "ТР ТС 017/2011 / ГОСТ 12.4.137",
+      "intl_standard": "ASTM F1671 / SATRA TM230",
+      "gost_norm": "Требования для мембранной обуви",
+      "wideway_value": "> 15 000 – 25 000 циклов изгиба в воде без протечек",
+      "advantage_ru": "Цельный 4-слойный чулок с герметизированными швами гарантирует сухость ног в осенне-весенней снежной жиже."
+    },
+    {
+      "parameter_ru": "Коэффициент сцепления на мокрой и обледенелой поверхности",
+      "parameter_en": "Slip Resistance Coefficient",
+      "gost_standard": "ГОСТ 12.4.033-77 / СП 29.13330",
+      "intl_standard": "EN ISO 13287 / SATRA TM144",
+      "gost_norm": "Коэффициент трения ≥ 0.30",
+      "wideway_value": "≥ 0.42 – 0.55 (Wet Ceramic & Steel Plates)",
+      "advantage_ru": "Разнонаправленный ламелированный протектор обеспечивает надежное зацепление за мокрую плитку и укатанный снег."
+    },
+    {
+      "parameter_ru": "Обязательная цифровая маркировка «Честный ЗНАК» / ИС МПТ",
+      "parameter_en": "Digital Track-and-Trace Barcode Aggregation",
+      "gost_standard": "ФЗ № 488-ФЗ / Распоряжение № 792-р",
+      "intl_standard": "GS1 DataMatrix (2D Barcode)",
+      "gost_norm": "Обязательно для каждой пары обуви",
+      "wideway_value": "100% агрегация DataMatrix на фабрике перед отгрузкой",
+      "advantage_ru": "Печать и нанесение термотрансферных кодов на ярлыки, индивидуальные коробки и транспортные короба с формированием файлов отгрузки."
+    },
+    {
+      "parameter_ru": "Токсикологическая и химическая безопасность",
+      "parameter_en": "Chemical Safety & Non-Toxicity",
+      "gost_standard": "ТР ТС 017/2011 (Прил. 8) / ГОСТ 30347-97",
+      "intl_standard": "OEKO-TEX Standard 100 / REACH SVHC",
+      "gost_norm": "Формальдегид ≤ 20 мг/кг, Хром VI ≤ 3 мг/кг",
+      "wideway_value": "Не обнаружено / Значительно ниже ПДК",
+      "advantage_ru": "Полная экологическая чистота сырья; отсутствие едких химических запахов при открытии коробок."
+    }
+  ],
+  "importSubstitutionMatrix": [
+    {
+      "western_brand": "Nike Pegasus / Infinity Run",
+      "category": "Кроссовки для ежедневного бега и фитнеса",
+      "wideway_equivalent": "WIDEWAY Pro-Run Supercritical Nitrogene (`WD2500111`)",
+      "specs": "Промежуточная подошва из сверхкритической азотной пены (Supercritical Nitrogen EVA), верх из воздухопроницаемой жаккардовой сетки, износостойкие резиновые накладки.",
+      "commercial_advantage": "Прямая заводская цена $12.50–$16.80 FOB (экономия 65% по сравнению с оптовыми ценами дистрибьюторов), кастомный брендинг, низкий MOQ 500 пар на цвет."
+    },
+    {
+      "western_brand": "Adidas Samba / Gazelle / Spezial",
+      "category": "Винтажные террасные и классические кортовые кеды",
+      "wideway_equivalent": "WIDEWAY Heritage T-Toe Court Series (`WD2500222`)",
+      "specs": "Натуральный спилок/замша в T-образном мыске, премиальная плотная микрофибра/экокожа основы, аутентичная подметка из ретро-каучука (gum rubber cupsole).",
+      "commercial_advantage": "1:1 воссоздание оригинальной эргономичной колодки, кастомизация задника и стельки под ваш бренд, метрический размерный ряд Mondopoint 225–300 мм."
+    },
+    {
+      "western_brand": "Salomon XT-6 / Speedcross",
+      "category": "Трейлраннинг, горпкор и демисезонный туризм",
+      "wideway_equivalent": "WIDEWAY All-Terrain Trail & Trek Series (`WD2500331`)",
+      "specs": "Система быстрой шнуровки (Quick-Lace), герметичный мембранный водонепроницаемый чулок (Waterproof Bootie), агрессивный глубокий шевронный протектор из морозостойкой резины.",
+      "commercial_advantage": "Сертифицированная водонепроницаемость >15 000 изгибов, идеальное сцепление на грунте и снегу, устойчивость к морозам до -30°C."
+    },
+    {
+      "western_brand": "New Balance 574 / 2002R / 990",
+      "category": "Ретро-раннеры и массивные городские кроссовки («Dad Shoes»)",
+      "wideway_equivalent": "WIDEWAY Archival Retro Runner Series (`WD2500441`)",
+      "specs": "Многослойный комбинированный верх (замша + полиэстеровая сетка), многокомпонентная амортизирующая подошва двойной плотности, стабилизирующая вставка в пятке из ТПУ.",
+      "commercial_advantage": "Увеличенная полнота колодки (идеально для восточноевропейской и центральноазиатской стопы), стойкость к истиранию, FOB $11.80–$15.50."
+    },
+    {
+      "western_brand": "Yeezy Slide / Hoka Recovery Slide",
+      "category": "Восстановительные литые слайды и анатомические шлепанцы",
+      "wideway_equivalent": "WIDEWAY Ultra-Cushion Cloud Slide Series (`WD2500551`)",
+      "specs": "Цельнолитая модифицированная ЭВА пена высокой упругости, глубокая чаша для фиксации пятки, поддержка продольного и поперечного сводов стопы.",
+      "commercial_advantage": "Высокомаржинальная товарная позиция для маркетплейсов (Wildberries, Ozon, Kaspi.kz), быстрый запуск пресс-форм, MOQ от 1000 пар."
+    }
+  ]
+}
