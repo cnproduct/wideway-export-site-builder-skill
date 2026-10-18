@@ -16,7 +16,7 @@ import urllib.error
 _curr = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(_curr) if os.path.basename(_curr) == "scripts" else _curr
 SITEMAP_PATH = os.path.join(BASE_DIR, "sitemap.xml")
-HOST = "widewayfootwear.com"
+HOST = "www.widewayfootwear.com"
 KEY = "e8a4c9f21b0d4637a9e52c3f8b7d6e21"
 KEY_LOCATION = f"https://{HOST}/{KEY}.txt"
 
@@ -65,8 +65,9 @@ def load_urls_from_sitemap():
             m = re.search(r"<loc>(https://(?:www\.)?widewayfootwear\.com[^<]+)</loc>", block)
             if m:
                 clean_u = m.group(1).strip()
-                # Normalize to naked domain
-                clean_u = clean_u.replace("https://www.widewayfootwear.com", "https://widewayfootwear.com")
+                # Normalize to canonical www domain
+                if "https://widewayfootwear.com" in clean_u and "www." not in clean_u:
+                    clean_u = clean_u.replace("https://widewayfootwear.com", "https://www.widewayfootwear.com")
                 urls.append(clean_u)
         if not urls:
             return DEFAULT_URLS

@@ -180,10 +180,25 @@ python3 deploy_production_sync.py
 
 ---
 
-## 🔄 内容更新与二次构建
 
-当你在 `data/site_content.json` 中手动添加了新的分类或修改了全局数据后，只需运行：
-```bash
-python3 build_site.py
-```
-系统将自动重新生成所有静态页面、更新分类聚合页、并重新编译最新的 `sitemap.xml` 和 `llms.txt`。
+---
+
+## 🔍 Google Search Console (GSC) & Yandex SEO/GEO 深度索引规范
+
+本框架原生内置应对 Google Search Console 与 Yandex 复杂抓取特性的权威技术标准：
+
+1. **首屏动态规范标记（Dynamic Canonical URL Injection）**：
+   - 彻底解决 parameterized 产品页面（如 `/product-detail?id=women-s-wd2500222`）被 Google 归类为“备用网页（有适当规范标记）”或“重复网页”问题。
+   - 在 `<head>` 注入原生极速解析器，自动解析产品参数并在客户端及 Chromium WRS 阶段动态生成 1:1 精准 Canonical 与 OpenGraph 标签；若无参数直接访问空白 `/product-detail` 则自动 302 重定向至产品中心 `/products`。
+
+2. **全产品独立直达 Sitemap 自动编译**：
+   - 剔除无独立内容的空白模板页（`/product-detail` 与 `/news-detail`）。
+   - 自动遍历全库所有产品 SKU，生成专属 `<loc>https://www.domain.com/product-detail?id=...</loc>` 节点，并内嵌 `<image:image>` 高清原图标签与标题，确保 Google Image 及常规搜索 100% 覆盖收录。
+
+3. **Nginx Apex 裸域名强制 301 永久重定向**：
+   - 将 `https://domain.com` 强制 301 重定向至 `https://www.domain.com$request_uri`，消灭双域名带来的权重分散和 GSC 备用页报警。
+
+4. **Yandex & 中亚独联体（CIS）俄语超级门户**：
+   - 自动化编译 `/ru/` 及 `/ru/cis-central-asia/` 俄语出海门户，深度支持 ГОСТ / EAC 认证标准矩阵与 Яндекс Нейро AI 索引。
+   - 内置 `scripts/yandex_indexnow_notify.py`，支持一键向 Yandex & Bing IndexNow 接口批量推送秒级收录请求。
+

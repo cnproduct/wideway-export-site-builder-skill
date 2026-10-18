@@ -869,6 +869,43 @@ def inject_seo_and_geo_tags(html, filename=None, company_info=None):
         clean_slug = "" if filename == "index.html" else filename.replace(".html", "")
     canonical_url = f"https://www.widewayfootwear.com/{clean_slug}"
 
+    # Dynamic canonical tag handling
+    if filename == "product-detail.html":
+        canonical_tag = """  <!-- Dynamic Canonical URL for Parameterized Product Pages -->
+  <script>
+    (function() {
+      try {
+        var p = new URLSearchParams(window.location.search);
+        var id = p.get('id') || p.get('product') || '';
+        var cUrl = id 
+          ? 'https://www.widewayfootwear.com/product-detail?id=' + encodeURIComponent(id.toLowerCase())
+          : 'https://www.widewayfootwear.com/products';
+        var el = document.createElement('link');
+        el.id = 'canonicalTag';
+        el.rel = 'canonical';
+        el.href = cUrl;
+        document.head.appendChild(el);
+      } catch(e) {}
+    })();
+  </script>"""
+    elif filename == "news-detail.html":
+        canonical_tag = """  <!-- News Detail Canonical -->
+  <script>
+    (function() {
+      try {
+        var p = new URLSearchParams(window.location.search);
+        var id = p.get('id');
+        var cUrl = id ? 'https://www.widewayfootwear.com/' + id.replace(/\\.html$/, '') : 'https://www.widewayfootwear.com/news';
+        var el = document.createElement('link');
+        el.rel = 'canonical';
+        el.href = cUrl;
+        document.head.appendChild(el);
+      } catch(e) {}
+    })();
+  </script>"""
+    else:
+        canonical_tag = f"""  <!-- Standard Canonical URL -->\n  <link rel="canonical" href="{canonical_url}">"""
+
     # 1. 2026 Core Web Vitals & GEO Head Essentials
     seo_geo_header_block = f"""  <!-- 2026 Core Web Vitals Font Acceleration -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -883,8 +920,7 @@ def inject_seo_and_geo_tags(html, filename=None, company_info=None):
   <meta name="geo.position" content="24.7836;118.5714">
   <meta name="ICBM" content="24.7836, 118.5714">
 
-  <!-- Standard Canonical URL -->
-  <link rel="canonical" href="{canonical_url}">
+{canonical_tag}
 
   <!-- Favicon Package -->
   <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48x48.png">
@@ -897,6 +933,9 @@ def inject_seo_and_geo_tags(html, filename=None, company_info=None):
     html = re.sub(r'<!--\s*2026 Generative Engine Optimization.*?-->\s*', '', html, flags=re.DOTALL)
     html = re.sub(r'<!--\s*Geolocation & Jinjiang Shoe Capital Metatags.*?-->\s*', '', html, flags=re.DOTALL)
     html = re.sub(r'<!--\s*Standard Canonical URL.*?-->\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<!--\s*Dynamic Canonical URL.*?-->\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<!--\s*News Detail Canonical.*?-->\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<script>[^<]*canonicalTag[^<]*</script>\s*', '', html, flags=re.DOTALL)
     html = re.sub(r'<!--\s*Favicon Package.*?-->\s*', '', html, flags=re.DOTALL)
     html = re.sub(r'<link\s+[^>]*rel=["\']canonical["\'][^>]*>\s*', '', html)
     html = re.sub(r'<link\s+[^>]*rel=["\']alternate["\'][^>]*type=["\']text/markdown["\'][^>]*>\s*', '', html)
@@ -1084,8 +1123,8 @@ def generate_sitemap_xml(all_pages, products):
         elif clean_slug == "products":
             for img in products[:8]:
                 image_tags += f"""    <image:image>
-      <image:loc>https://www.widewayfootwear.com/{img.get('image')}</image:loc>
-      <image:title>{img.get('name')} Athletic Footwear OEM</image:title>
+      <image:loc>https://www.widewayfootwear.com/{img.get('image', '').lstrip('/')}</image:loc>
+      <image:title>{img.get('name', '')} Athletic Footwear OEM</image:title>
     </image:image>\n"""
 
         sitemap_xml += f"""  <url>
@@ -1095,10 +1134,47 @@ def generate_sitemap_xml(all_pages, products):
     <priority>{priority}</priority>
 {image_tags}  </url>\n"""
 
+    # Add all individual products directly so Google indexes each SKU
+    for prod in products:
+        p_id = (prod.get("id") or prod.get("code") or "").strip().lower()
+        if not p_id:
+            continue
+        p_name = prod.get("name", "WIDEWAY Athletic Footwear")
+        p_img = prod.get("image", "").lstrip('/')
+        p_loc = f"https://www.widewayfootwear.com/product-detail?id={p_id}"
+        
+        img_tags = ""
+        if p_img:
+            img_tags = f"""    <image:image>
+      <image:loc>https://www.widewayfootwear.com/{p_img}</image:loc>
+      <image:title>{p_name} OEM/ODM Footwear</image:title>
+    </image:image>\n"""
+            
+        sitemap_xml += f"""  <url>
+    <loc>{p_loc}</loc>
+    <lastmod>{today_iso}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+{img_tags}  </url>\n"""
+
+    # Add CIS Russian Portals with canonical www
+    sitemap_xml += f"""  <url>
+    <loc>https://www.widewayfootwear.com/ru/</loc>
+    <lastmod>{today_iso}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.widewayfootwear.com/ru/cis-central-asia/</loc>
+    <lastmod>{today_iso}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>\n"""
+
     sitemap_xml += "</urlset>"
     with open(os.path.join(workspace, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write(sitemap_xml)
-    print("  Generated Google Image-Extended sitemap.xml")
+    print("  Generated Google Image-Extended sitemap.xml with 100+ product URLs")
 
 def generate_llms_txt(company_info):
     llms_txt = f"""# WIDEWAY GROUP (Jinjiang Wideway Import & Export Co., Ltd.)
@@ -1420,9 +1496,9 @@ def compile_site():
     # 3. Generate 2026 sitemap.xml with Google Image metadata
     news_pages = [n.get("url", f"{n.get('id', '')}.html") for n in news]
     all_compiled_pages = [
-        "index.html", "products.html", "product-detail.html", "oem-odm.html", "heritage-footwear-reproduction.html", "production-capacity.html",
+        "index.html", "products.html", "oem-odm.html", "heritage-footwear-reproduction.html", "production-capacity.html",
         "quality-control.html", "certifications.html", "sustainability.html", "brand-identity.html",
-        "about.html", "case-studies.html", "videos.html", "news.html", "news-detail.html", "contact.html",
+        "about.html", "case-studies.html", "videos.html", "news.html", "contact.html",
         "knowledge-base.html", "whitepapers.html", "glossary.html", "knowledge-graph.html"
     ] + [c["url"] for c in categories.values()] + news_pages
     

@@ -50,7 +50,7 @@ User-agent: DeepSeekBot
 Allow: /
 
 # Canonical Sitemaps & Machine-Readable AI Knowledge
-Sitemap: https://widewayfootwear.com/sitemap.xml
-# llms.txt: https://widewayfootwear.com/llms.txt
-# llms-full.txt: https://widewayfootwear.com/llms-full.txt
-# ai-cis-gost-matrix: https://widewayfootwear.com/ai/cis-gost-matrix.json
+Sitemap: https://www.widewayfootwear.com/sitemap.xml
+# llms.txt: https://www.widewayfootwear.com/llms.txt
+# llms-full.txt: https://www.widewayfootwear.com/llms-full.txt
+# ai-cis-gost-matrix: https://www.widewayfootwear.com/ai/cis-gost-matrix.json

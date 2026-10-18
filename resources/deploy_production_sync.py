@@ -18,19 +18,17 @@ def deploy():
     # Collect files
     core_files = glob.glob("*.html") + [
         "sitemap.xml", "robots.txt", "llms.txt", "llms-full.txt", "DESIGN.md", "favicon.ico", "manifest.json",
-        "server.py", "build_site.py", "validate_site_quality.py", "deploy_production_sync.py"
+        "server.py", "build_site.py", "validate_site_quality.py", "deploy_production_sync.py",
+        "e8a4c9f21b0d4637a9e52c3f8b7d6e21.txt"
     ]
     
     with tarfile.open(tar_path, "w:gz") as tar:
         for f in core_files:
             if os.path.exists(f):
                 tar.add(f, arcname=os.path.basename(f))
-        if os.path.exists("css"):
-            tar.add("css", arcname="css")
-        if os.path.exists("js"):
-            tar.add("js", arcname="js")
-        if os.path.exists("data"):
-            tar.add("data", arcname="data")
+        for folder in ["css", "js", "data", "ru", "references", "scripts", "ai"]:
+            if os.path.exists(folder):
+                tar.add(folder, arcname=folder)
 
     tar_size = os.path.getsize(tar_path)
     print(f"  Bundle created: {tar_size / 1024:.1f} KB")
@@ -97,6 +95,14 @@ def deploy():
     sftp.close()
     ssh.close()
     print("🚀 Deployment to 43.130.32.54 completed successfully!")
+
+    # Step 6: Submit IndexNow notification to Yandex and Bing
+    print("📡 Submitting real-time IndexNow notification to Yandex & Bing...")
+    try:
+        import subprocess
+        subprocess.run([sys.executable, "scripts/yandex_indexnow_notify.py"], check=False)
+    except Exception as e:
+        print(f"  ⚠️ IndexNow notification notice: {e}")
 
 if __name__ == "__main__":
     deploy()

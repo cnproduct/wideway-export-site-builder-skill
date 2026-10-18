@@ -4,7 +4,7 @@
 WIDEWAY GROUP - Yandex SEO & Central Asia (CIS / EAEU) GEO Super Portal Compiler
 Target Markets: Russian Federation (RU), Kazakhstan (KZ), Uzbekistan (UZ), Belarus (BY), Kyrgyzstan (KG)
 Target Engines: Yandex Search (YandexBot), Яндекс Нейро (Yandex Neuro), Алиса AI (YandexGPT 5), Google CIS
-Site: https://widewayfootwear.com
+Site: https://www.widewayfootwear.com
 
 Core Capabilities:
 1. Compiles /ru/index.html:
@@ -217,21 +217,21 @@ def compile_ru_portal():
   <title>Производство обуви в Китае под заказ | Фабрика WIDEWAY Цзиньцзян (OEM/ODM)</title>
   <meta name="description" content="Прямая фабрика по пошиву обуви в Цзиньцзяне (WIDEWAY GROUP). Производство кроссовок, кед, треккинговой обуви и слайдов под ключ. Полное соответствие ТР ТС 017/2011, маркировка Честный ЗНАК, доставка ж/д в Москву, Алматы, Ташкент.">
   <meta name="keywords" content="производство обуви китай, фабрика обуви цзиньцзян, пошив кроссовок оптом, контрактное производство обуви, обувь oem odm китай, обувь честный знак китай, кроссовки оптом от производителя">
-  <link rel="canonical" href="https://widewayfootwear.com/ru/">
+  <link rel="canonical" href="https://www.widewayfootwear.com/ru/">
   
   <meta name="yandex-verification" content="{YANDEX_VERIFICATION_CODE}">
-  <link rel="alternate" hreflang="en" href="https://widewayfootwear.com/" />
-  <link rel="alternate" hreflang="ru" href="https://widewayfootwear.com/ru/" />
-  <link rel="alternate" hreflang="ru-RU" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="ru-KZ" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="ru-UZ" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="ru-BY" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="x-default" href="https://widewayfootwear.com/" />
+  <link rel="alternate" hreflang="en" href="https://www.widewayfootwear.com/" />
+  <link rel="alternate" hreflang="ru" href="https://www.widewayfootwear.com/ru/" />
+  <link rel="alternate" hreflang="ru-RU" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="ru-KZ" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="ru-UZ" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="ru-BY" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.widewayfootwear.com/" />
   
   <meta property="og:type" content="website">
   <meta property="og:title" content="Фабрика обуви WIDEWAY Цзиньцзян | Контрактное производство OEM/ODM в Китае">
   <meta property="og:description" content="Производство качественной спортивной, повседневной и треккинговой обуви на фабрике в Китае. ТР ТС 017/2011, Честный ЗНАК, прямые ж/д поставки в РФ и СНГ.">
-  <meta property="og:url" content="https://widewayfootwear.com/ru/">
+  <meta property="og:url" content="https://www.widewayfootwear.com/ru/">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:locale:alternate" content="ru_KZ">
   <meta property="og:locale:alternate" content="ru_UZ">
@@ -250,7 +250,7 @@ def compile_ru_portal():
     "name": "WIDEWAY GROUP Footwear Manufacturing",
     "alternateName": "Jinjiang Wideway Import & Export Co., Ltd.",
     "description": "Прямой китайский производитель спортивной, повседневной и специализированной обуви OEM/ODM в Цзиньцзяне с 2007 года.",
-    "url": "https://widewayfootwear.com/ru/",
+    "url": "https://www.widewayfootwear.com/ru/",
     "telephone": "{WHATSAPP_NUMBER}",
     "email": "{EMAIL_CIS}",
     "address": {{
@@ -634,21 +634,21 @@ def compile_cis_central_asia_portal():
   <title>Поставки обуви оптом в Россию, Казахстан и Узбекистан | Фабрика WIDEWAY (ЕАЭС / СНГ)</title>
   <meta name="description" content="Контрактное производство обуви для рынков России, Казахстана, Узбекистана и Беларуси. Соответствие ТР ТС 017/2011, нанесение кодов «Честный ЗНАК» / ИС МПТ, морозостойкость до -35°C, расчеты в юанях/рублях, прямые контейнерные поезда из Цзиньцзяна.">
   <meta name="keywords" content="обувь оптом россия, фабрика обуви казахстан, пошив обуви узбекистан, тр тс 017 2011 обувь, честный знак обувь китай, жд доставка обуви китай москва, контрактное производство кроссовок снг">
-  <link rel="canonical" href="https://widewayfootwear.com/ru/cis-central-asia/">
+  <link rel="canonical" href="https://www.widewayfootwear.com/ru/cis-central-asia/">
   
   <meta name="yandex-verification" content="{YANDEX_VERIFICATION_CODE}">
-  <link rel="alternate" hreflang="en" href="https://widewayfootwear.com/" />
-  <link rel="alternate" hreflang="ru" href="https://widewayfootwear.com/ru/" />
-  <link rel="alternate" hreflang="ru-RU" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="ru-KZ" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="ru-UZ" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="ru-BY" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="x-default" href="https://widewayfootwear.com/" />
+  <link rel="alternate" hreflang="en" href="https://www.widewayfootwear.com/" />
+  <link rel="alternate" hreflang="ru" href="https://www.widewayfootwear.com/ru/" />
+  <link rel="alternate" hreflang="ru-RU" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="ru-KZ" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="ru-UZ" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="ru-BY" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.widewayfootwear.com/" />
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="Прямые поставки фабричной обуви в РФ, Казахстан и Центральную Азию | WIDEWAY GROUP">
   <meta property="og:description" content="Регламент ТР ТС 017/2011, маркировка Честный ЗНАК, морозостойкие подошвы -35°C, расчеты в юанях и рублях.">
-  <meta property="og:url" content="https://widewayfootwear.com/ru/cis-central-asia/">
+  <meta property="og:url" content="https://www.widewayfootwear.com/ru/cis-central-asia/">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:locale:alternate" content="ru_KZ">
   <meta property="og:locale:alternate" content="ru_UZ">
@@ -819,13 +819,13 @@ def inject_yandex_and_hreflang_across_site():
     yandex_tags_block = f"""
   <!-- Yandex Search, Yandex Neuro & Central Asia GEO Meta Tags -->
   <meta name="yandex-verification" content="{YANDEX_VERIFICATION_CODE}">
-  <link rel="alternate" hreflang="en" href="https://widewayfootwear.com/" />
-  <link rel="alternate" hreflang="ru" href="https://widewayfootwear.com/ru/" />
-  <link rel="alternate" hreflang="ru-RU" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="ru-KZ" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="ru-UZ" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="ru-BY" href="https://widewayfootwear.com/ru/cis-central-asia/" />
-  <link rel="alternate" hreflang="x-default" href="https://widewayfootwear.com/" />
+  <link rel="alternate" hreflang="en" href="https://www.widewayfootwear.com/" />
+  <link rel="alternate" hreflang="ru" href="https://www.widewayfootwear.com/ru/" />
+  <link rel="alternate" hreflang="ru-RU" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="ru-KZ" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="ru-UZ" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="ru-BY" href="https://www.widewayfootwear.com/ru/cis-central-asia/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.widewayfootwear.com/" />
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="ru_RU">
   <meta property="og:locale:alternate" content="ru_KZ">
@@ -838,8 +838,8 @@ def inject_yandex_and_hreflang_across_site():
         with open(fpath, "r", encoding="utf-8") as f:
             content = f.read()
 
-        if "yandex-verification" in content:
-            continue
+        # Remove existing yandex & hreflang block to ensure clean canonical update
+        content = re.sub(r'<!--\s*Yandex Search, Yandex Neuro & Central Asia GEO Meta Tags\s*-->.*?<meta property="og:locale:alternate" content="ru_BY">\s*', '', content, flags=re.DOTALL)
 
         # Inject right before </head>
         if "</head>" in content:
@@ -848,7 +848,7 @@ def inject_yandex_and_hreflang_across_site():
                 f.write(new_content)
             modified_count += 1
 
-    print(f"  ✅ Injected Yandex tags into {modified_count} HTML pages.")
+    print(f"  ✅ Injected and updated canonical Yandex & hreflang tags in {modified_count} HTML pages.")
 
 def generate_ai_cis_gost_matrix():
     """Generates machine-readable /ai/cis-gost-matrix.json for Яндекс Нейро & Алиса AI."""
@@ -863,7 +863,7 @@ def generate_ai_cis_gost_matrix():
             "@type": "Organization",
             "name": "Jinjiang Wideway Import & Export Co., Ltd.",
             "alternateName": "WIDEWAY GROUP",
-            "url": "https://widewayfootwear.com",
+            "url": "https://www.widewayfootwear.com",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Jinjiang",
@@ -957,10 +957,10 @@ User-agent: DeepSeekBot
 Allow: /
 
 # Canonical Sitemaps & Machine-Readable AI Knowledge
-Sitemap: https://widewayfootwear.com/sitemap.xml
-# llms.txt: https://widewayfootwear.com/llms.txt
-# llms-full.txt: https://widewayfootwear.com/llms-full.txt
-# ai-cis-gost-matrix: https://widewayfootwear.com/ai/cis-gost-matrix.json
+Sitemap: https://www.widewayfootwear.com/sitemap.xml
+# llms.txt: https://www.widewayfootwear.com/llms.txt
+# llms-full.txt: https://www.widewayfootwear.com/llms-full.txt
+# ai-cis-gost-matrix: https://www.widewayfootwear.com/ai/cis-gost-matrix.json
 """
     with open(robots_path, "w", encoding="utf-8") as f:
         f.write(robots_content)
@@ -972,18 +972,18 @@ Sitemap: https://widewayfootwear.com/sitemap.xml
             s_content = f.read()
 
         ru_entries = """  <url>
-    <loc>https://widewayfootwear.com/ru/</loc>
+    <loc>https://www.widewayfootwear.com/ru/</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://widewayfootwear.com/ru/cis-central-asia/</loc>
+    <loc>https://www.widewayfootwear.com/ru/cis-central-asia/</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 </urlset>"""
 
-        if "https://widewayfootwear.com/ru/" not in s_content:
+        if "https://www.widewayfootwear.com/ru/" not in s_content:
             s_content = s_content.replace("</urlset>", ru_entries)
             with open(sitemap_path, "w", encoding="utf-8") as f:
                 f.write(s_content)
