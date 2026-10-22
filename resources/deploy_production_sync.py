@@ -26,7 +26,7 @@ def deploy():
         for f in core_files:
             if os.path.exists(f):
                 tar.add(f, arcname=os.path.basename(f))
-        for folder in ["css", "js", "data", "ru", "references", "scripts", "ai"]:
+        for folder in ["css", "js", "data", "ru", "references", "scripts", "ai", "products_static"]:
             if os.path.exists(folder):
                 tar.add(folder, arcname=folder)
 

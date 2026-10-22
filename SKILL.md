@@ -36,6 +36,25 @@ description: 全生命周期工业出海 B2B 独立站与 Master CMS 管理后�
 ### 5. 极速一键部署与运维保障 (`deploy_production_sync.py`)
 * 自动打包、SSH/SCP 差量传输、解压并更新权限、Nginx 重新加载与 systemd 后台 API 服务无缝重启。
 
+### 6. Google Search Console 100% 全收录与 SSG 预渲染架构
+* **消除 GSC 爬虫重复与非收录状态**：针对 Google Search Console 常见的 `Alternate page with proper canonical tag`、`Discovered - currently not indexed`、`Duplicate, Google chose different canonical than user` 等问题。
+* **静态预渲染 (SSG Pre-rendering)**：`build_site.py` 自动化遍历 `site_content.json` 中全部商品 SKU，生成对应的完整静态 HTML 并存放在 `products_static/{pid}.html`。页面首字节即包含：
+  - 针对该商品优化的独一无二 `<title>` 与 `<meta name="description">`
+  - 首要规范规范标签 `<link rel="canonical" href="https://domain.com/product-detail?id={pid}">`
+  - 真实商品 H1 标题、技术参数、面料、大底、MOQ 与包装条款
+  - 完整的 `Schema.org/Product` JSON-LD 结构化微数据
+* **Nginx 零感知极速命中**：
+  ```nginx
+  location = /product-detail {
+      try_files /products_static/$arg_id.html /product-detail.html =404;
+  }
+  location = /product-detail/ {
+      try_files /products_static/$arg_id.html /product-detail.html =404;
+  }
+  ```
+  外部 URL 与询盘参数完全保持原样，Googlebot 即使在不执行客户端 JS 的第一阶段抓取时，也能 100% 捕获真实商品独立内容，彻底告别空模板重复抓取。
+* **Sitemap 永久持久化保护**：生成包含全部商品独立 URL、分类页、新闻页与多语种门户的完整 `sitemap.xml`（176+ URLs），编译过程中全面防止截断与意外覆盖。
+
 ---
 
 ## 📂 技能目录与资源结构

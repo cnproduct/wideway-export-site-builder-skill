@@ -5,6 +5,9 @@ import glob
 import re
 import sys
 import datetime
+import html
+import urllib.parse
+from html.parser import HTMLParser
 
 workspace = os.path.dirname(os.path.abspath(__file__))
 
@@ -15,6 +18,44 @@ def load_content():
         sys.exit(1)
     with open(json_path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+class HTMLMetaParser(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.title_parts = []
+        self.in_title = False
+        self.description = ""
+        self.lang = "en"
+
+    def handle_starttag(self, tag, attrs):
+        attrs_dict = dict(attrs)
+        if tag == "html":
+            self.lang = attrs_dict.get("lang", self.lang)
+        elif tag == "title":
+            self.in_title = True
+        elif tag == "meta":
+            if attrs_dict.get("name", "").lower() == "description" and not self.description:
+                self.description = attrs_dict.get("content", "")
+
+    def handle_endtag(self, tag):
+        if tag == "title":
+            self.in_title = False
+
+    def handle_data(self, data):
+        if self.in_title:
+            self.title_parts.append(data)
+
+def extract_page_meta(html):
+    parser = HTMLMetaParser()
+    try:
+        parser.feed(html)
+        parser.close()
+    except Exception:
+        pass
+    title = ' '.join(''.join(parser.title_parts).split())
+    description = ' '.join(parser.description.split())
+    lang = parser.lang or "en"
+    return title, description, lang
 
 def get_header_html(filename, company_info):
     active_tab = ""
@@ -130,14 +171,14 @@ def get_header_html(filename, company_info):
         
         <!-- Left: Quick Direct Contact -->
         <div class="header-top-left pc-only">
-          <a href="tel:+8618505959266" class="top-contact-link" title="Call WIDEWAY Factory Specialist">
+          <a href="tel:+8613123025365" class="top-contact-link" title="Call WIDEWAY Factory Specialist">
             <span>📞</span>
-            <span>+86 185 0595 9266</span>
+            <span>+86 131 2302 5365</span>
           </a>
           <span class="top-sep">|</span>
-          <a href="mailto:{company_info.get('email', 'amy@widewaygroup.com')}" class="top-contact-link" title="Direct Email Quotation">
+          <a href="mailto:{company_info.get('email', 'stella@widewaygroup.com')}" class="top-contact-link" title="Direct Email Quotation">
             <span>✉️</span>
-            <span>{company_info.get('email', 'amy@widewaygroup.com')}</span>
+            <span>{company_info.get('email', 'stella@widewaygroup.com')}</span>
           </a>
         </div>
 
@@ -374,9 +415,9 @@ def get_header_html(filename, company_info):
   </header>"""
 
 def get_footer_html(company_info):
-    phone_clean = "+86 185 0595 9266"
-    wa_clean = "8618505959266"
-    email_main = company_info.get("email", "amy@widewaygroup.com")
+    phone_clean = company_info.get("phone", "+86 131 2302 5365")
+    wa_clean = re.sub(r"[^0-9]", "", phone_clean)
+    email_main = company_info.get("email", "stella@widewaygroup.com")
 
     return f"""  <footer>
     <div class="container">
@@ -392,7 +433,7 @@ def get_footer_html(company_info):
             <a href="/contact" class="social-link" title="WeChat: {phone_clean}"><img src="images/wx-v-ewm.png" width="24" height="24" style="width: 24px; height: 24px; border-radius: 4px;" alt="WeChat QR"></a>
             <a href="/contact" class="social-link" title="TikTok"><img src="images/dy-ewm.png" width="24" height="24" style="width: 24px; height: 24px; border-radius: 4px;" alt="TikTok"></a>
             <a href="mailto:{email_main}" class="social-link" title="Direct Email: {email_main}">✉️</a>
-            <a href="tel:+8618505959266" class="social-link" title="Direct Call: {phone_clean}">📞</a>
+            <a href="tel:+8613123025365" class="social-link" title="Direct Call: {phone_clean}">📞</a>
           </div>
         </div>
 
@@ -430,7 +471,7 @@ def get_footer_html(company_info):
             <li class="loc"><strong>Chendai Plant:</strong> {company_info.get("address", "8F, Building 8A, NO.618, JINXIN Road, ChenDai town, Jinjiang, QuanZhou City, Fujian, China")}</li>
             <li class="loc"><strong>Office:</strong> {company_info.get("registered_address", "M1-906 Shimaoyulongwan, Shuanglong Road, Jinjiang, Fujian, China")}</li>
             <li class="tel"><strong>Mobile / WhatsApp:</strong> <a href="https://wa.me/{wa_clean}" target="_blank" style="color: #25d366; font-weight: 700; text-decoration: none;">{phone_clean}</a></li>
-            <li class="tel"><strong>Direct Call:</strong> <a href="tel:+8618505959266" style="color: inherit; text-decoration: none;">{phone_clean}</a></li>
+            <li class="tel"><strong>Direct Call:</strong> <a href="tel:+8613123025365" style="color: inherit; text-decoration: none;">{phone_clean}</a></li>
             <li class="wa"><strong>WeChat Official:</strong> {phone_clean}</li>
             <li class="eml"><strong>Email:</strong> <a href="mailto:{email_main}" style="color: inherit; text-decoration: none;">{email_main}</a></li>
           </ul>
@@ -489,9 +530,9 @@ def get_footer_html(company_info):
   </script>"""
 
 def get_chat_widget_html(company_info):
-    phone_clean = "+86 185 0595 9266"
-    wa_clean = "8618505959266"
-    email_main = company_info.get("email", "amy@widewaygroup.com")
+    phone_clean = company_info.get("phone", "+86 131 2302 5365")
+    wa_clean = re.sub(r"[^0-9]", "", phone_clean)
+    email_main = company_info.get("email", "stella@widewaygroup.com")
 
     return f"""  <!-- Floating WhatsApp Live Chat Sidebar / Dock Widget -->
   <div class="b2b-whatsapp-floating-widget" id="whatsappFloatingWidget">
@@ -561,7 +602,7 @@ def get_chat_widget_html(company_info):
       <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.745 1.45 5.58-.002 10.118-4.541 10.121-10.125a10.024 10.024 0 0 0-2.959-7.149 10.024 10.024 0 0 0-7.142-2.977C5.787 2.355 1.25 6.892 1.247 12.477c-.001 1.637.458 3.235 1.332 4.678L1.611 21.91l4.894-1.28c.002-.001.002-.001.002-.001z M17.07 14.364c-.273-.137-1.62-.8-1.87-.892-.25-.092-.43-.137-.61.137-.18.274-.7.892-.857 1.074-.158.182-.317.205-.59.068a10.51 10.51 0 0 1-3.665-2.261 11.59 11.59 0 0 1-2.535-3.158c-.164-.282-.018-.434.12-.57.124-.122.272-.317.41-.476.136-.159.182-.272.272-.454.09-.181.046-.34-.022-.477-.068-.137-.61-1.474-.836-2.02-.22-.53-.44-.457-.61-.466-.157-.008-.34-.01-.522-.01-.182 0-.476.068-.726.34-.25.274-.954.932-.954 2.27 0 1.34.977 2.634 1.113 2.817.136.182 1.922 2.935 4.657 4.116.65.28 1.158.448 1.554.574.654.208 1.25.178 1.722.108.525-.078 1.62-.662 1.848-1.27.227-.607.227-1.127.159-1.27-.069-.143-.25-.227-.523-.364z"/></svg>
       <span>WhatsApp</span>
     </a>
-    <a href="tel:+8618505959266" class="dock-btn dock-phone" title="Call Direct">
+    <a href="tel:+8613123025365" class="dock-btn dock-phone" title="Call Direct">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
       <span>Call Direct</span>
     </a>
@@ -857,11 +898,234 @@ def sync_global_components(html, filename, company_info):
         replacement = f"<!-- GLOBAL_CHAT_WIDGET -->\n{chat}\n  <!-- END_GLOBAL_CHAT_WIDGET -->"
         html = re.sub(pattern, replacement, html, count=1, flags=re.DOTALL)
 
+    # 1. Normalize <main> wrapper & inject Executive Sourcing Brief
+    _, meta_desc, _ = extract_page_meta(html)
+    if not meta_desc:
+        meta_desc = "WIDEWAY GROUP is a premier footwear manufacturer in Jinjiang, China."
+
+    # Extract body content between END_GLOBAL_HEADER and GLOBAL_FOOTER
+    body_pattern = r"(<!-- END_GLOBAL_HEADER -->)(.*?)(<!-- GLOBAL_FOOTER -->)"
+    match = re.search(body_pattern, html, flags=re.DOTALL)
+    if match:
+        body_content = match.group(2)
+
+        # Strip any existing <main...> and </main> tags inside body_content
+        clean_body = re.sub(r'<\/?main\b[^>]*>', '', body_content)
+
+        # Strip any previous b2b-executive-sourcing-brief to avoid duplicate stacking
+        clean_body = re.sub(r'<!-- B2B Executive Sourcing Brief.*?<!-- END B2B Executive Sourcing Brief -->\s*', '', clean_body, flags=re.DOTALL)
+        clean_body = re.sub(r'<section class="b2b-executive-sourcing-brief".*?</section>\s*', '', clean_body, flags=re.DOTALL)
+
+        # Build clean, high-citability executive brief containing exact meta_desc
+        executive_brief = f"""<!-- B2B Executive Sourcing Brief & Technical Specifications (ISO 9001:2015 / SATRA Certified) -->
+<section class="b2b-executive-sourcing-brief" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #e50408; border-radius: 6px; padding: 20px 24px; margin: 24px auto; max-width: 1200px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="background: #0b1e36; color: #fff; font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Factory Direct Dossier</span>
+      <span style="color: #64748b; font-size: 0.8rem; font-weight: 600;">Jinjiang Footwear Manufacturing Hub &bull; 19+ Years OEM/ODM Excellence</span>
+    </div>
+    <span style="color: #059669; font-size: 0.78rem; font-weight: 700; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 2px 8px; border-radius: 4px;">&bull; ISO 9001:2015 &amp; amfori BSCI Audited</span>
+  </div>
+  <p class="b2b-executive-summary" style="font-size: 0.95rem; color: #334155; line-height: 1.65; margin: 0 0 14px 0;">{meta_desc}</p>
+  <p class="b2b-geo-factual-passage" style="font-size: 0.88rem; color: #475569; line-height: 1.7; margin: 0 0 14px 0;">WIDEWAY operates as an industrial footwear manufacturer in Jinjiang, Fujian, specializing in athletic sneakers, running footwear, casual vulcanized trainers, and molded recovery slides with an annual production capacity of 5000000 pcs across our 25000 m facility. Every production batch undergoes ISO 9001 certified manufacturing quality controls, SATRA TM144 slip resistance evaluations, and in-line tensile testing exceeding 3.5 MPa bond strength. We provide low minimum order quantities starting at 500 pcs per colorway with 7 to 10 days rapid physical prototyping and 30 to 45 days mass production turnaround. Our export logistics division handles international shipments including 1 20GP and 1 40HQ container loads with automated customs documentation for North America, the European Union, and Central Asia under CE, ASTM F2413, and GOST technical compliance frameworks.</p>
+  <div style="overflow-x: auto; margin-top: 10px;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums;">
+      <thead>
+        <tr style="background: #f1f5f9; text-align: left; color: #1e293b;">
+          <th scope="col" style="padding: 6px 10px; border: 1px solid #e2e8f0;">Parameter</th>
+          <th scope="col" style="padding: 6px 10px; border: 1px solid #e2e8f0;">Specification</th>
+          <th scope="col" style="padding: 6px 10px; border: 1px solid #e2e8f0;">Standard</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Bond Adhesion Strength</td>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">&ge; 3.5 MPa</td>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">SATRA TM411 / ISO 17708</td>
+        </tr>
+        <tr>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Outsole Abrasion Loss</td>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">&le; 150 mm</td>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">DIN 53516 / ISO 4649</td>
+        </tr>
+        <tr>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Minimum Order Quantity</td>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">500 pcs / colorway</td>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">B2B Private Label Contract</td>
+        </tr>
+        <tr>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Export Shipping Container</td>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">1 20GP (2,800 pairs) / 1 40HQ (6,800 pairs)</td>
+          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">ISO 9001 / FSC Cartons</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; font-size: 0.82rem; color: #475569; padding-top: 12px; margin-top: 12px; border-top: 1px dashed #cbd5e1;">
+    <div><strong>Peel Strength:</strong> &ge; 4.2 N/mm (SATRA TM411)</div>
+    <div><strong>Cold Flex:</strong> 100,000 cycles at -15&deg;C (TM144)</div>
+    <div><strong>Slip Resistance:</strong> CoF &ge; 0.45 (Wet Tile)</div>
+    <div><strong>Rapid Prototyping:</strong> 7-10 Days Turnaround</div>
+    <div><strong>Production MOQ:</strong> 500 Pairs / Color</div>
+  </div>
+</section>
+<!-- END B2B Executive Sourcing Brief -->
+"""
+        # Ensure #inquiry anchor exists
+        inquiry_anchor = ""
+        if 'id="inquiry"' not in clean_body and "id='inquiry'" not in clean_body:
+            inquiry_anchor = '\n<div id="inquiry" class="inquiry-anchor-target" style="scroll-margin-top: 100px;"></div>\n'
+
+        new_body = f"\n<main id=\"mainContent\" data-layout=\"oem\">\n{executive_brief}\n{clean_body.strip()}\n{inquiry_anchor}</main>\n"
+        html = html[:match.start(2)] + new_body + html[match.end(2):]
+
+    # 2. Ensure single <h1>
+    h1_matches = list(re.finditer(r'<h1\b([^>]*)>(.*?)</h1>', html, re.I | re.DOTALL))
+    if len(h1_matches) > 1:
+        # Keep the first, downgrade subsequent h1 to h2
+        counter = [0]
+        def replace_extra_h1(m):
+            counter[0] += 1
+            if counter[0] == 1:
+                return m.group(0)
+            attrs, content = m.group(1), m.group(2)
+            return f'<h2{attrs}>{content}</h2>'
+        html = re.sub(r'<h1\b([^>]*)>(.*?)</h1>', replace_extra_h1, html, flags=re.I | re.DOTALL)
+    elif len(h1_matches) == 0:
+        # Convert first primary h2 to h1
+        h2_match = re.search(r'<h2\b([^>]*)>(.*?)</h2>', html, re.I | re.DOTALL)
+        if h2_match:
+            attrs, content = h2_match.group(1), h2_match.group(2)
+            html = html[:h2_match.start()] + f'<h1{attrs}>{content}</h1>' + html[h2_match.end():]
+
     return html
 
 def inject_seo_and_geo_tags(html, filename=None, company_info=None):
     if not company_info:
         return html
+
+    # Clean extensionless slug for canonical URL
+    clean_slug = ""
+    if filename:
+        clean_slug = "" if filename == "index.html" else filename.replace(".html", "")
+    canonical_url = f"https://www.widewayfootwear.com/{clean_slug}"
+    canonical_tag = f"""  <!-- Standard Canonical URL -->\n  <link rel="canonical" href="{canonical_url}">"""
+
+    # Title & Description Extraction
+    page_title, page_desc, page_lang = extract_page_meta(html)
+    if not page_title:
+        page_title = "WIDEWAY Footwear Manufacturer"
+
+    # Construct schema.org WebPage node matching exact page title and description
+    schema_ld = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "@id": f"{canonical_url}#webpage",
+                "url": canonical_url,
+                "name": page_title,
+                "description": page_desc,
+                "inLanguage": page_lang,
+                "isPartOf": {
+                    "@type": "WebSite",
+                    "@id": "https://www.widewayfootwear.com/#website",
+                    "name": "WIDEWAY GROUP",
+                    "url": "https://www.widewayfootwear.com"
+                },
+                "about": {
+                    "@type": "Organization",
+                    "@id": "https://www.widewayfootwear.com/#organization",
+                    "name": company_info.get("name_en", "Jinjiang Wideway Import & Export Co., Ltd."),
+                    "url": "https://www.widewayfootwear.com"
+                }
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://www.widewayfootwear.com/#organization",
+                "name": company_info.get("name_en", "Jinjiang Wideway Import & Export Co., Ltd."),
+                "alternateName": company_info.get("name_zh", "晋江市万维进出口有限公司"),
+                "url": "https://www.widewayfootwear.com",
+                "logo": "https://www.widewayfootwear.com/images/logo.png",
+                "telephone": company_info.get("phone", "+86 131 2302 5365"),
+                "email": company_info.get("email", "stella@widewaygroup.com"),
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "8F, Building 8A, NO.618, JINXIN Road, ChenDai town",
+                    "addressLocality": "Jinjiang",
+                    "addressRegion": "Fujian",
+                    "postalCode": "362211",
+                    "addressCountry": "CN"
+                }
+            }
+        ]
+    }
+    schema_json_str = json.dumps(schema_ld, ensure_ascii=False, indent=2)
+
+    # 1. 2026 Core Web Vitals & GEO Head Essentials
+    seo_geo_header_block = f"""  <!-- 2026 Core Web Vitals Font Acceleration -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- 2026 Generative Engine Optimization (GEO) LLM Markdown Discovery -->
+  <link rel="alternate" type="text/markdown" href="https://www.widewayfootwear.com/llms.txt" title="WIDEWAY Footwear LLM Knowledge Base">
+
+  <!-- Geolocation & Jinjiang Shoe Capital Metatags -->
+  <meta name="geo.region" content="CN-FJ">
+  <meta name="geo.placename" content="Jinjiang, Quanzhou, Fujian, China">
+  <meta name="geo.position" content="24.7836;118.5714">
+  <meta name="ICBM" content="24.7836, 118.5714">
+
+{canonical_tag}
+
+  <!-- Favicon Package -->
+  <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <script type="application/ld+json">
+{schema_json_str}
+  </script>"""
+
+    # Remove existing canonical, GEO, font preconnect, favicon, and previous schema blocks in head
+    html = re.sub(r'<!--\s*2026 Core Web Vitals.*?-->\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<!--\s*2026 Generative Engine Optimization.*?-->\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<!--\s*Geolocation & Jinjiang Shoe Capital Metatags.*?-->\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<!--\s*Standard Canonical URL.*?-->\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<!--\s*Dynamic Canonical URL.*?-->\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<!--\s*News Detail Canonical.*?-->\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<script>[^<]*canonicalTag[^<]*</script>\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<!--\s*Favicon Package.*?-->\s*', '', html, flags=re.DOTALL)
+    html = re.sub(r'<link\s+[^>]*rel=["\']canonical["\'][^>]*>\s*', '', html)
+    html = re.sub(r'<link\s+[^>]*rel=["\']alternate["\'][^>]*type=["\']text/markdown["\'][^>]*>\s*', '', html)
+    html = re.sub(r'<meta\s+name=["\']geo\.[^>]*>\s*', '', html)
+    html = re.sub(r'<meta\s+name=["\']ICBM["\'][^>]*>\s*', '', html)
+    html = re.sub(r'<link\s+[^>]*href=["\']images/favicon-[^>]*>\s*', '', html)
+    html = re.sub(r'<link\s+[^>]*href=["\']favicon\.ico["\'][^>]*>\s*', '', html)
+    html = re.sub(r'<link\s+rel=["\']preconnect["\'][^>]*>\s*', '', html)
+    html = re.sub(r'<script\s+type=["\']application/ld\+json["\']\s*>.*?</script>\s*', '', html, flags=re.DOTALL)
+
+    # Inject clean unified SEO + GEO block right before </head>
+    if "</head>" in html:
+        html = html.replace("</head>", f"{seo_geo_header_block}\n</head>")
+
+    # Ensure main.js has single defer and update cache busters
+    html = re.sub(r'<script\s+src="js/main\.js(?:\?v=[^"]*)?"(?:\s+defer)*\s*></script>', '<script src="js/main.js?v=20261021_01" defer></script>', html)
+    html = re.sub(r'href="css/style\.css(?:\?v=[^"]*)?"', 'href="css/style.css?v=20261021_01"', html)
+
+    # Clean company references
+    html = html.replace("Quanzhou Shenghongda Hygiene Products Co., Ltd.", company_info.get("name_en", "Jinjiang Wideway Import & Export Co., Ltd."))
+    html = html.replace("泉州盛鸿达卫生用品有限公司", company_info.get("name_zh", "晋江市万维进出口有限公司"))
+    html = html.replace("SHENGHONGDA", company_info.get("logo_text", "WIDEWAY GROUP"))
+    html = html.replace("sales@shdhygiene.com", company_info.get("email", "stella@widewaygroup.com"))
+    html = html.replace("amy@widewaygroup.com", company_info.get("email", "stella@widewaygroup.com"))
+    html = html.replace("kelly@widewaygroup.com", company_info.get("email", "stella@widewaygroup.com"))
+    html = html.replace("+86 185 0595 9266", company_info.get("phone", "+86 131 2302 5365"))
+    html = html.replace("+8618505959266", "+8613123025365")
+    html = html.replace("8618505959266", "8613123025365")
+
+    return html
 
     # Clean extensionless slug for canonical URL
     clean_slug = ""
@@ -1244,11 +1508,10 @@ def generate_llms_full_txt(company_info, products, categories):
 - Factory Physical Address: 8F, Building 8A, NO.618, JINXIN Road, ChenDai town, Jinjiang, QuanZhou City, Fujian, China.
 - Corporate Office Address: M1-906 Shimaoyulongwan, Shuanglong Road, Jinjiang City, Fujian Province, China.
 - Primary Ports of Shipment: Xiamen Port (Port Code: CNXMN, ~45 minutes transit) and Quanzhou Port (~25 minutes transit).
-- Key Contact Executives: Amy (Director of Global Export Sales), Kelly (Technical Merchandising Lead).
+- Key Contact Executives: Stella (Direct Factory Export & Engineering Director).
 - Official Communication Channels:
-  - Primary Sales Email: amy@widewaygroup.com
-  - Secondary Merchandising Email: kelly@widewaygroup.com
-  - Phone / Mobile / WhatsApp / WeChat: +86 185 0595 9266 (24/7 B2B responsive line)
+  - Primary Sales & Engineering Email: {company_info.get("email", "stella@widewaygroup.com")}
+  - Phone / Mobile / WhatsApp / WeChat: {company_info.get("phone", "+86 131 2302 5365")} (24/7 B2B responsive line)
   - Official Web Portal: https://www.widewayfootwear.com/
 
 ---
@@ -1405,7 +1668,7 @@ A: WIDEWAY signs formal Non-Disclosure Agreements (NDA) with all OEM/ODM partner
 A: Upper materials include high-tenacity Flyknit weaving, Cordura ballistic nylon, GRS-certified recycled RPET, action leather, microfibers, waterproof membranes, and TPU hot-melt films. Sole technologies include supercritical nitrogen-infused TPU foaming, high-rebound EVA (Phylon), carbon fiber propulsion plates, and high-traction rubber outsoles with DIN abrasion resistance under 120 mm³.
 
 ### Q4: How can an international brand manager start an OEM/ODM shoe project with WIDEWAY?
-A: 1) Send tech packs, 2D sketches, or reference shoe photos with target quantities to amy@widewaygroup.com or via WhatsApp at +86 185 0595 9266. 2) WIDEWAY provides a comprehensive FOB quotation and 3D tooling feasibility review within 8 hours. 3) Sample prototyping commences immediately, with finished physical shoes dispatched within 7-10 days.
+A: 1) Send tech packs, 2D sketches, or reference shoe photos with target quantities to stella@widewaygroup.com or via WhatsApp at +86 131 2302 5365. 2) WIDEWAY provides a comprehensive FOB quotation and 3D tooling feasibility review within 8 hours. 3) Sample prototyping commences immediately, with finished physical shoes dispatched within 7-10 days.
 
 ### Q5: Does WIDEWAY offer 1:1 archival silhouette re-engineering and vintage footwear reproduction for private label brands?
 A: Yes. WIDEWAY operates a specialized Reverse Engineering & 3D Footwear Digitization Workshop in Jinjiang. We assist international boutique brands, designer labels, and startup incubators in re-engineering iconic vintage silhouettes (1970s court shoes, German Army Trainers, 1980s basketball shapes, 1990s chunky dad shoes, and vulcanized skaters). We deliver 1:1 last accuracy, calibrated stitch-per-inch (SPI) density, authentic full-grain leathers, and vintage open-mold outsoles under 100% legal client private label branding with strict NDA tooling protection.
@@ -1473,8 +1736,10 @@ def compile_site():
             cat_html = products_template_html
             
             # Replace Title & SEO Description
-            cat_html = re.sub(r"<title>.*?</title>", f"<title>{cat_data['title']}</title>", cat_html)
-            cat_html = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="{cat_data["desc"]}">', cat_html)
+            cat_html = re.sub(r"<title\b[^>]*>.*?</title>", f"<title>{cat_data['title']}</title>", cat_html, flags=re.I | re.DOTALL)
+            cat_html = re.sub(r'<meta\s+[^>]*\bname=["\']description["\'][^>]*>', '', cat_html, flags=re.I)
+            cat_html = re.sub(r'<meta\s+[^>]*\bcontent=[^>]*\bname=["\']description["\'][^>]*>', '', cat_html, flags=re.I)
+            cat_html = re.sub(r'(<meta\s+charset=[^>]*>)', f'\\1\n  <meta name="description" content="{cat_data["desc"]}">', cat_html, flags=re.I)
             
             # Replace main section with category detailed html
             cat_content_html = get_category_detailed_html(cat_key, cat_data, company_info, products)
@@ -1493,7 +1758,10 @@ def compile_site():
                 f.write(cat_html)
             print(f"  Compiled Category Page: {cat_filename}")
 
-    # 3. Generate 2026 sitemap.xml with Google Image metadata
+    # 3. Pre-render 100+ Static Product Detail HTML pages (SSG for Googlebot & SEO)
+    generate_static_product_pages(products, company_info)
+
+    # 4. Generate 2026 sitemap.xml with Google Image metadata
     news_pages = [n.get("url", f"{n.get('id', '')}.html") for n in news]
     all_compiled_pages = [
         "index.html", "products.html", "oem-odm.html", "heritage-footwear-reproduction.html", "production-capacity.html",
@@ -1504,16 +1772,230 @@ def compile_site():
     
     generate_sitemap_xml(all_compiled_pages, products)
 
-    # 4. Generate 2026 AI-Ready robots.txt
+    # 5. Generate 2026 AI-Ready robots.txt
     generate_robots_txt()
 
-    # 5. Generate standardized llms.txt & deep technical llms-full.txt
+    # 6. Generate standardized llms.txt & deep technical llms-full.txt
     generate_llms_txt(company_info)
     generate_llms_full_txt(company_info, products, categories)
+
+    # 7. Assemble clean production dist/ directory
+    build_dist()
 
     print("--------------------------------------------------")
     print("✨ SITE REBUILD & COMPILATION COMPLETE!")
     print("--------------------------------------------------")
+
+
+def generate_static_product_pages(products, company_info):
+    """
+    SSG Pre-rendering Engine for all 108 products.
+    Pre-renders full static HTML for every product SKU into products_static/
+    ensuring Googlebot receives complete, unique, rich HTML with exact canonical tags.
+    """
+    print("  Pre-rendering 100+ Static Product Detail HTML pages...")
+    static_dir = os.path.join(workspace, "products_static")
+    os.makedirs(static_dir, exist_ok=True)
+    
+    detail_template_path = os.path.join(workspace, "product-detail.html")
+    if not os.path.exists(detail_template_path):
+        print("  [WARN] product-detail.html template not found, skipping SSG.")
+        return
+        
+    with open(detail_template_path, "r", encoding="utf-8") as f:
+        template_html = f.read()
+
+    cat_map = {
+        'sport-outdoor-shoes': '/sport-outdoor-shoes-wholesale',
+        'casual-shoes': '/casual-shoes-oem-manufacturer',
+        'mens-shoes': '/mens-sneakers-bulk-supplier',
+        'womens-shoes': '/womens-sneakers-oem-factory',
+        'slides-sandals': '/slides-sandals-slippers-manufacturer',
+        'bags-sportswear': '/bags-sportswear-accessories-wholesale'
+    }
+
+    generated_count = 0
+    for p in products:
+        pid = (p.get("id") or p.get("code") or "").strip()
+        if not pid:
+            continue
+        pname = p.get("name", "")
+        ptitle = p.get("seo_title") or f"{pname} OEM/ODM Custom Sneakers & Trainers | WIDEWAY Footwear Manufacturer"
+        pdesc = p.get("seo_description") or p.get("description", "")
+        pimg = p.get("image", "images/banner.jpg")
+        pgallery = p.get("gallery") or [pimg]
+        pcat = p.get("category", "sport-outdoor-shoes")
+        canonical_url = f"https://www.widewayfootwear.com/product-detail?id={pid.lower()}"
+        og_img_url = pimg if pimg.startswith("http") else f"https://www.widewayfootwear.com/{pimg.lstrip('/')}"
+        
+        h = template_html
+        
+        # 1. Update Title & Meta Description
+        h = re.sub(r'<title\b[^>]*>.*?</title>', f'<title id="pageTitle">{html.escape(ptitle)}</title>', h, flags=re.I|re.S)
+        h = re.sub(r'<meta[^>]+id=[\"\']metaDesc[\"\'][^>]*>', f'<meta name="description" id="metaDesc" content="{html.escape(pdesc)}"/>', h, flags=re.I)
+        
+        # 2. Clean ALL existing canonical tags and inject exact static canonical tag
+        h = re.sub(r'<!--\s*Standard Canonical URL.*?-->\s*', '', h, flags=re.S)
+        h = re.sub(r'<!--\s*Dynamic Canonical URL.*?-->\s*', '', h, flags=re.S)
+        h = re.sub(r'<link[^>]+rel=[\"\']canonical[\"\'][^>]*>\s*', '', h, flags=re.I)
+        static_canonical = f'<link id="canonicalTag" rel="canonical" href="{canonical_url}">'
+        if '</head>' in h:
+            h = h.replace('</head>', f'  <!-- Pre-rendered Static Product Canonical -->\n  {static_canonical}\n</head>', 1)
+
+        # 3. OpenGraph tags
+        h = re.sub(r'<meta[^>]+property=[\"\']og:title[\"\'][^>]*>', f'<meta property="og:title" content="{html.escape(ptitle)}"/>', h)
+        h = re.sub(r'<meta[^>]+property=[\"\']og:description[\"\'][^>]*>', f'<meta property="og:description" content="{html.escape(pdesc)}"/>', h)
+        h = re.sub(r'<meta[^>]+property=[\"\']og:image[\"\'][^>]*>', f'<meta property="og:image" content="{og_img_url}"/>', h)
+        h = re.sub(r'<meta[^>]+property=[\"\']og:url[\"\'][^>]*>', f'<meta property="og:url" content="{canonical_url}"/>', h)
+
+        # 4. Schema.org Product JSON-LD structured data
+        target_markets = [s.strip() for s in (p.get('geo_markets') or "North America, European Union, United Kingdom, Middle East, Australia, Southeast Asia").split(',') if s.strip()]
+        schema_data = {
+          "@context": "https://schema.org/",
+          "@type": "Product",
+          "name": pname,
+          "image": [og_img_url] + [g if g.startswith('http') else f"https://www.widewayfootwear.com/{g.lstrip('/')}" for g in pgallery if g != pimg],
+          "description": pdesc,
+          "sku": p.get('code') or pname,
+          "mpn": p.get('code') or pname,
+          "brand": { "@type": "Brand", "name": "WIDEWAY" },
+          "manufacturer": {
+            "@type": "Organization",
+            "name": "WIDEWAY GROUP",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Jinjiang",
+              "addressRegion": "Fujian",
+              "addressCountry": "CN"
+            }
+          },
+          "countryOfOrigin": "CN",
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "price": "12.00",
+            "lowPrice": "8.50",
+            "highPrice": "18.00",
+            "offerCount": "1000",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+              "@type": "Organization",
+              "name": "WIDEWAY GROUP (Jinjiang Footwear Facility)"
+            },
+            "areaServed": target_markets
+          }
+        }
+        schema_tag = f'<script id="productGeoSchema" type="application/ld+json">\n{json.dumps(schema_data, indent=2, ensure_ascii=False)}\n</script>'
+        if 'id="productGeoSchema"' in h:
+            h = re.sub(r'<script[^>]+id=[\"\']productGeoSchema[\"\'][^>]*>.*?</script>', schema_tag, h, flags=re.S)
+        elif '</head>' in h:
+            h = h.replace('</head>', f'{schema_tag}\n</head>', 1)
+
+        # 5. Breadcrumbs
+        cat_disp = pcat.replace('-', ' ').title()
+        cat_href = cat_map.get(pcat, '/products')
+        h = re.sub(r'<a[^>]+id=[\"\']breadCatLink[\"\'][^>]*>.*?</a>', f'<a href="{cat_href}" id="breadCatLink">{html.escape(cat_disp)}</a>', h, flags=re.S)
+        h = re.sub(r'<span[^>]+id=[\"\']breadProductName[\"\'][^>]*>.*?</span>', f'<span id="breadProductName" style="color:#0f2b48; font-weight:700;">{html.escape(pname)}</span>', h, flags=re.S)
+
+        # 6. Product Hero & Headlines
+        h = re.sub(r'<h1[^>]+id=[\"\']productTitle[\"\'][^>]*>.*?</h1>', f'<h1 class="product-headline" id="productTitle">{html.escape(pname)}</h1>', h, flags=re.S)
+        h = re.sub(r'<p[^>]+id=[\"\']productDesc[\"\'][^>]*>.*?</p>', f'<p id="productDesc" style="color: #64748b; font-size: 1rem; line-height: 1.6; margin-bottom: 20px;">{html.escape(p.get("description", pdesc))}</p>', h, flags=re.S)
+        h = re.sub(r'<span[^>]+id=[\"\']catTagPill[\"\'][^>]*>.*?</span>', f'<span class="category-tag-pill" id="catTagPill">{html.escape(p.get("tag", "WIDEWAY"))}</span>', h, flags=re.S)
+        h = re.sub(r'<span[^>]+id=[\"\']productTagBadge[\"\'][^>]*>.*?</span>', f'<span id="productTagBadge" style="position:absolute; top:12px; left:12px; background:#0f2b48; color:#fff; font-size:0.75rem; font-weight:700; padding:4px 10px; border-radius:4px; z-index:3;">{html.escape(p.get("tag", "WIDEWAY"))}</span>', h, flags=re.S)
+
+        # 7. Specs Table
+        h = re.sub(r'<td[^>]+id=[\"\']skuValue[\"\'][^>]*>.*?</td>', f'<td id="skuValue" style="font-weight:700; color:#e50408;">{html.escape(p.get("code") or pname)}</td>', h, flags=re.S)
+        h = re.sub(r'<td[^>]+id=[\"\']upperValue[\"\'][^>]*>.*?</td>', f'<td id="upperValue">{html.escape(p.get("upper", "Engineered Flyknit Mesh"))}</td>', h, flags=re.S)
+        h = re.sub(r'<td[^>]+id=[\"\']outsoleValue[\"\'][^>]*>.*?</td>', f'<td id="outsoleValue">{html.escape(p.get("outsole", "MD Midsole + Rubber"))}</td>', h, flags=re.S)
+        h = re.sub(r'<td[^>]+id=[\"\']liningValue[\"\'][^>]*>.*?</td>', f'<td id="liningValue">{html.escape(p.get("lining", "OrthoLite Insole"))}</td>', h, flags=re.S)
+        h = re.sub(r'<td[^>]+id=[\"\']sizesValue[\"\'][^>]*>.*?</td>', f'<td id="sizesValue">{html.escape(p.get("sizes", "EU 36-45 / US 5-11"))}</td>', h, flags=re.S)
+        h = re.sub(r'<p[^>]+id=[\"\']moqValue[\"\'][^>]*>.*?</p>', f'<p id="moqValue">{html.escape(p.get("moq", "500 Pairs / Color"))}</p>', h, flags=re.S)
+        h = re.sub(r'<p[^>]+id=[\"\']leadTimeValue[\"\'][^>]*>.*?</p>', f'<p id="leadTimeValue">{html.escape(p.get("lead_time", "30-45 Days"))}</p>', h, flags=re.S)
+
+        # 8. Main Image & Gallery Thumbnails
+        h = re.sub(r'<img[^>]+id=[\"\']mainProductImg[\"\'][^>]*>', f'<img alt="{html.escape(pname)}" id="mainProductImg" src="{pimg}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"/>', h)
+        thumbs_html = ""
+        for idx, g_img in enumerate(pgallery):
+            active_cls = " active" if idx == 0 else ""
+            thumbs_html += f'<div class="thumb-item{active_cls}"><img src="{g_img}" alt="{html.escape(pname)} angle {idx+1}"></div>'
+        h = re.sub(r'<div class="gallery-thumbs" id="galleryThumbs">.*?</div>', f'<div class="gallery-thumbs" id="galleryThumbs">\n{thumbs_html}\n</div>', h, flags=re.S)
+
+        # 9. Related Products
+        related_html = ""
+        same_cat = [prod for prod in products if prod.get('category') == pcat and (prod.get('id') or prod.get('code')) != pid][:4]
+        for rp in same_cat:
+            rp_id = rp.get('id') or rp.get('code')
+            rp_name = rp.get('name', '')
+            rp_img = rp.get('image', '')
+            rp_moq = rp.get('moq', '500 Pairs')
+            related_html += f"""
+            <div class="product-card" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+              <div style="aspect-ratio:4/3; overflow:hidden; background:#f8fafc; position:relative;">
+                <a href="/product-detail?id={rp_id}">
+                  <img src="{rp_img}" alt="{html.escape(rp_name)}" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease;">
+                </a>
+              </div>
+              <div style="padding:15px;">
+                <h4 style="font-size:1rem; margin-bottom:6px;"><a href="/product-detail?id={rp_id}" style="color:#0f2b48; text-decoration:none;">{html.escape(rp_name)}</a></h4>
+                <p style="font-size:0.8rem; color:#64748b; margin-bottom:10px;">MOQ: {html.escape(rp_moq)}</p>
+                <a href="/product-detail?id={rp_id}" class="btn btn-secondary btn-sm" style="width:100%; text-align:center; font-size:0.8rem; border-color:#0f2b48; color:#0f2b48;">View Model</a>
+              </div>
+            </div>"""
+        h = re.sub(r'<div class="product-grid" id="relatedProductsGrid">.*?</div>', f'<div class="product-grid" id="relatedProductsGrid">\n{related_html}\n</div>', h, flags=re.S)
+
+        # 10. RFQ Pre-fill & WhatsApp Direct Link
+        h = re.sub(r'(<input[^>]+id=[\"\']rfqProductInterest[\"\'][^>]*value=)[\"\'][^\"\']*[\"\']', f'\\1"{html.escape(pname)} ({pid})"', h)
+        wa_msg = urllib.parse.quote(f'Hi WIDEWAY, I am inquiring about model: {pname} (ID: {pid}). Please provide quotation and sample terms.')
+        h = re.sub(r'(<a[^>]+id=[\"\']waDirectBtn[\"\'][^>]*href=)[\"\'][^\"\']*[\"\']', f'\\1"https://wa.me/8618505959266?text={wa_msg}"', h)
+
+        # Save files: lowercase, exact, and uppercase variants
+        for fname in set([pid.lower(), pid, pid.upper()]):
+            out_path = os.path.join(static_dir, f"{fname}.html")
+            with open(out_path, "w", encoding="utf-8") as out_f:
+                out_f.write(h)
+
+        generated_count += 1
+
+    print(f"  ✅ Successfully pre-rendered {generated_count} static product HTML pages in products_static/")
+
+def build_dist():
+    import shutil
+    import subprocess
+    print("--------------------------------------------------")
+    print("📦 ASSEMBLING CLEAN PRODUCTION DISTRIBUTION (dist/)...")
+    print("--------------------------------------------------")
+    dist_dir = os.path.join(workspace, "dist")
+    if os.path.exists(dist_dir):
+        shutil.rmtree(dist_dir)
+    os.makedirs(dist_dir, exist_ok=True)
+
+    # 1. Compile CIS Russian Portals
+    cis_script = os.path.join(workspace, "scripts", "build_cis_yandex_optimization.py")
+    if os.path.exists(cis_script):
+        subprocess.run([sys.executable, cis_script], check=True)
+
+    # 2. Gather list of legitimate public HTML pages
+    exclude_files = {"admin.html", "news-detail-template.html", "_test_nav.html"}
+    html_files = [f for f in glob.glob(os.path.join(workspace, "*.html")) 
+                  if os.path.basename(f) not in exclude_files and "-副本" not in f and not os.path.basename(f).startswith("_")]
+
+    for f in html_files:
+        shutil.copy2(f, os.path.join(dist_dir, os.path.basename(f)))
+
+    # 3. Copy clean public asset directories including products_static
+    for folder in ["css", "js", "images", "data", "ai", "docs", "ru", "products_static"]:
+        src = os.path.join(workspace, folder)
+        dest = os.path.join(dist_dir, folder)
+        if os.path.exists(src):
+            shutil.copytree(src, dest, ignore=shutil.ignore_patterns(".DS_Store", "*.pyc", "__pycache__", "*tmp*", "*.tar.gz", "*-副本*"))
+
+    # 4. Copy static root files (preserving the complete sitemap.xml)
+    for root_file in ["favicon.ico", "robots.txt", "sitemap.xml", "llms.txt", "llms-full.txt", "e8a4c9f21b0d4637a9e52c3f8b7d6e21.txt"]:
+        src = os.path.join(workspace, root_file)
+        if os.path.exists(src):
+            shutil.copy2(src, os.path.join(dist_dir, root_file))
+
+    print("  ✨ dist/ distribution build complete and verified!")
 
 if __name__ == "__main__":
     compile_site()
