@@ -912,71 +912,16 @@ def sync_global_components(html, filename, company_info):
         # Strip any existing <main...> and </main> tags inside body_content
         clean_body = re.sub(r'<\/?main\b[^>]*>', '', body_content)
 
-        # Strip any previous b2b-executive-sourcing-brief to avoid duplicate stacking
+        # Strip any previous b2b-executive-sourcing-brief to avoid duplicate stacking or layout obstruction
         clean_body = re.sub(r'<!-- B2B Executive Sourcing Brief.*?<!-- END B2B Executive Sourcing Brief -->\s*', '', clean_body, flags=re.DOTALL)
         clean_body = re.sub(r'<section class="b2b-executive-sourcing-brief".*?</section>\s*', '', clean_body, flags=re.DOTALL)
 
-        # Build clean, high-citability executive brief containing exact meta_desc
-        executive_brief = f"""<!-- B2B Executive Sourcing Brief & Technical Specifications (ISO 9001:2015 / SATRA Certified) -->
-<section class="b2b-executive-sourcing-brief" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #e50408; border-radius: 6px; padding: 20px 24px; margin: 24px auto; max-width: 1200px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
-  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <span style="background: #0b1e36; color: #fff; font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Factory Direct Dossier</span>
-      <span style="color: #64748b; font-size: 0.8rem; font-weight: 600;">Jinjiang Footwear Manufacturing Hub &bull; 19+ Years OEM/ODM Excellence</span>
-    </div>
-    <span style="color: #059669; font-size: 0.78rem; font-weight: 700; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 2px 8px; border-radius: 4px;">&bull; ISO 9001:2015 &amp; amfori BSCI Audited</span>
-  </div>
-  <p class="b2b-executive-summary" style="font-size: 0.95rem; color: #334155; line-height: 1.65; margin: 0 0 14px 0;">{meta_desc}</p>
-  <p class="b2b-geo-factual-passage" style="font-size: 0.88rem; color: #475569; line-height: 1.7; margin: 0 0 14px 0;">WIDEWAY operates as an industrial footwear manufacturer in Jinjiang, Fujian, specializing in athletic sneakers, running footwear, casual vulcanized trainers, and molded recovery slides with an annual production capacity of 5000000 pcs across our 25000 m facility. Every production batch undergoes ISO 9001 certified manufacturing quality controls, SATRA TM144 slip resistance evaluations, and in-line tensile testing exceeding 3.5 MPa bond strength. We provide low minimum order quantities starting at 500 pcs per colorway with 7 to 10 days rapid physical prototyping and 30 to 45 days mass production turnaround. Our export logistics division handles international shipments including 1 20GP and 1 40HQ container loads with automated customs documentation for North America, the European Union, and Central Asia under CE, ASTM F2413, and GOST technical compliance frameworks.</p>
-  <div style="overflow-x: auto; margin-top: 10px;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums;">
-      <thead>
-        <tr style="background: #f1f5f9; text-align: left; color: #1e293b;">
-          <th scope="col" style="padding: 6px 10px; border: 1px solid #e2e8f0;">Parameter</th>
-          <th scope="col" style="padding: 6px 10px; border: 1px solid #e2e8f0;">Specification</th>
-          <th scope="col" style="padding: 6px 10px; border: 1px solid #e2e8f0;">Standard</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Bond Adhesion Strength</td>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">&ge; 3.5 MPa</td>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">SATRA TM411 / ISO 17708</td>
-        </tr>
-        <tr>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Outsole Abrasion Loss</td>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">&le; 150 mm</td>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">DIN 53516 / ISO 4649</td>
-        </tr>
-        <tr>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Minimum Order Quantity</td>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">500 pcs / colorway</td>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">B2B Private Label Contract</td>
-        </tr>
-        <tr>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Export Shipping Container</td>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">1 20GP (2,800 pairs) / 1 40HQ (6,800 pairs)</td>
-          <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">ISO 9001 / FSC Cartons</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; font-size: 0.82rem; color: #475569; padding-top: 12px; margin-top: 12px; border-top: 1px dashed #cbd5e1;">
-    <div><strong>Peel Strength:</strong> &ge; 4.2 N/mm (SATRA TM411)</div>
-    <div><strong>Cold Flex:</strong> 100,000 cycles at -15&deg;C (TM144)</div>
-    <div><strong>Slip Resistance:</strong> CoF &ge; 0.45 (Wet Tile)</div>
-    <div><strong>Rapid Prototyping:</strong> 7-10 Days Turnaround</div>
-    <div><strong>Production MOQ:</strong> 500 Pairs / Color</div>
-  </div>
-</section>
-<!-- END B2B Executive Sourcing Brief -->
-"""
         # Ensure #inquiry anchor exists
         inquiry_anchor = ""
         if 'id="inquiry"' not in clean_body and "id='inquiry'" not in clean_body:
             inquiry_anchor = '\n<div id="inquiry" class="inquiry-anchor-target" style="scroll-margin-top: 100px;"></div>\n'
 
-        new_body = f"\n<main id=\"mainContent\" data-layout=\"oem\">\n{executive_brief}\n{clean_body.strip()}\n{inquiry_anchor}</main>\n"
+        new_body = f"\n<main id=\"mainContent\" data-layout=\"oem\">\n{clean_body.strip()}\n{inquiry_anchor}</main>\n"
         html = html[:match.start(2)] + new_body + html[match.end(2):]
 
     # 2. Ensure single <h1>
